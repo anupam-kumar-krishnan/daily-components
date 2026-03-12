@@ -191,7 +191,7 @@ const ThumbBento = () => (
 const ThumbFlipCards = () => (
   <div className="w-full h-full flex items-center justify-center gap-2 bg-black">
     {Array.from({ length: 4 }).map((_, i) => (
-      <div key={i} className="w-15 h-20 rounded-xl bg-white" />
+      <div key={i} className="w-16 h-20 rounded-xl bg-white" />
     ))}
   </div>
 );
@@ -282,7 +282,7 @@ export default function ComponentShowcase() {
             />
 
             <motion.div
-              className="fixed inset-[5%] bg-[#0f0f0f] z-50 rounded-2xl overflow-hidden"
+              className="fixed inset-[5%] bg-[#0f0f0f] z-50 rounded-2xl overflow-hidden flex flex-col"
               initial={{ opacity: 0, scale: 0.93, y: 24 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 16 }}
