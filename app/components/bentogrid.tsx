@@ -7,6 +7,7 @@ import {
   animate,
   useMotionValue,
   useTransform,
+  cubicBezier,
 } from "framer-motion";
 
 /* ─── Shared fade-up variant ──────────────── */
@@ -15,7 +16,11 @@ const fadeUp = {
   visible: (i: number) => ({
     opacity: 1,
     y: 0,
-    transition: { duration: 0.6, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] },
+    transition: {
+      duration: 0.6,
+      delay: i * 0.1,
+      ease: cubicBezier(0.22, 1, 0.36, 1),
+    },
   }),
 };
 
@@ -824,7 +829,6 @@ export default function BentoGrid() {
               initial="hidden"
               animate="visible"
               whileHover="hover"
-              variants2={cardHover}
               style={{ borderRadius: 20 }}
             >
               <motion.div

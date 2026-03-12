@@ -729,7 +729,7 @@ const ThumbFlipCards = () => (
 const ThumbCTA = () => (
   <div
     className="w-full h-full flex items-center justify-center"
-    style={{ background: "orange" }}
+    style={{ background: "black" }}
   >
     <div className="w-60 h-28 rounded-sm bg-orange-100"></div>
   </div>
@@ -739,7 +739,7 @@ const ThumbMenu = () => {
   return (
     <div
       className="w-full h-full flex items-center justify-center"
-      style={{ background: "blue" }}
+      style={{ background: "black" }}
     >
       <div className="relative w-28 h-28 flex items-center justify-center">
         {Array.from({ length: 5 }).map((_, i) => (
@@ -759,7 +759,7 @@ const ThumbMenu = () => {
 const ThumbHero = () => (
   <div
     className="w-full h-full flex flex-col items-center justify-center gap-2 px-4"
-    style={{ background: "indigo" }}
+    style={{ background: "black" }}
   >
     <div className="w-16 h-2 rounded-full bg-white" />
     <div className="w-24 h-2 rounded-full bg-white" />
@@ -774,7 +774,7 @@ const ThumbHero = () => (
 const ThumbMagnetic = () => (
   <div
     className="w-full h-full flex items-center justify-center px-6"
-    style={{ background: "#0b0f18" }}
+    style={{ background: "#000" }}
   >
     <div className="grid grid-cols-3 gap-2">
       {/* Top Row */}
