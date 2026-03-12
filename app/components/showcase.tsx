@@ -662,7 +662,7 @@ const COMPONENTS = [
     title: "Hero Section",
     description: "Clean minimal hero with cycling word animation",
     tag: "Layout",
-    tagColor: "#800080",
+    tagColor: "#60a5fa",
     preview: <HeroSection />,
     thumb: { bg: "#fafafa", accent: "#111" },
   },
@@ -680,7 +680,7 @@ const COMPONENTS = [
     title: "CTA Section",
     description: "CTA Section with Animation",
     tag: "CTA",
-    tagColor: "#ffff00",
+    tagColor: "#60a5fa",
     preview: <CTASection />,
     thumb: { bg: "#0a0a0a", accent: "#6366f1" },
   },
@@ -778,14 +778,14 @@ const ThumbMagnetic = () => (
   >
     <div className="grid grid-cols-3 gap-2">
       {/* Top Row */}
-      <div className="h-7 w-15 bg-[#121d2e] rounded-md"></div>
-      <div className="h-7 w-15 bg-[#2462eb] rounded-md"></div>
-      <div className="h-7 w-15 bg-[#121d2e] rounded-md"></div>
+      <div className="h-7 w-15 bg-white rounded-md"></div>
+      <div className="h-7 w-15 bg-white rounded-md"></div>
+      <div className="h-7 w-15 bg-white rounded-md"></div>
 
       {/* Bottom Row */}
-      <div className="h-7 w-15 bg-blue-500 rounded-md"></div>
-      <div className="h-7 w-15 bg-[#2462eb] rounded-md"></div>
-      <div className="h-7 w-15 bg-blue-500 rounded-md"></div>
+      <div className="h-7 w-15 bg-white rounded-md"></div>
+      <div className="h-7 w-15 bg-white rounded-md"></div>
+      <div className="h-7 w-15 bg-white rounded-md"></div>
     </div>
   </div>
 );
