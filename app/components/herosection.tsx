@@ -1,17 +1,17 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { easeOut, motion } from "framer-motion";
 
 const fadeUp = (delay = 0) => ({
   initial: { opacity: 0, y: 24 },
   animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1], delay },
+  transition: { duration: 0.7, ease: easeOut, delay },
 });
 
 const fadeIn = (delay = 0) => ({
   initial: { opacity: 0 },
   animate: { opacity: 1 },
-  transition: { duration: 0.6, ease: "easeOut", delay },
+  transition: { duration: 0.6, ease: easeOut, delay },
 });
 
 export default function VentrixHero() {
@@ -135,7 +135,7 @@ export default function VentrixHero() {
               duration: 3,
               repeat: Infinity,
               repeatDelay: 4,
-              ease: "easeInOut",
+              ease: easeOut,
             }}
           >
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none">
@@ -172,7 +172,7 @@ export default function VentrixHero() {
           }}
           initial={{ opacity: 0, y: 40, scale: 0.96 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
-          transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1], delay: 0.55 }}
+          transition={{ duration: 0.9, ease: easeOut, delay: 0.55 }}
         >
           growth
         </motion.h1>
