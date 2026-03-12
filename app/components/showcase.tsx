@@ -8,61 +8,7 @@ import CTASection from "./ctasection";
 import SpeeddialButtons from "./speeddialbuttons";
 import Flipcard from "./flipcard";
 
-/* easing fix for framer motion */
 const easeOut = [0.22, 1, 0.36, 1] as const;
-
-/* ───────────────────────────────────────── */
-/* Flip Cards Theme                         */
-/* ───────────────────────────────────────── */
-
-const THEMES = {
-  blue: {
-    r: 30,
-    g: 100,
-    b: 220,
-    glow: "rgba(20,80,210,0.2)",
-    arrow: "#60a5fa",
-    btn: "rgba(20,60,200,0.35)",
-    btnBorder: "rgba(60,120,255,0.3)",
-    bg: "#10131f",
-  },
-  red: {
-    r: 220,
-    g: 30,
-    b: 30,
-    glow: "rgba(200,20,20,0.2)",
-    arrow: "#f87171",
-    btn: "rgba(180,20,20,0.35)",
-    btnBorder: "rgba(240,60,60,0.3)",
-    bg: "#1a0f0f",
-  },
-  green: {
-    r: 20,
-    g: 180,
-    b: 60,
-    glow: "rgba(10,160,40,0.2)",
-    arrow: "#4ade80",
-    btn: "rgba(10,120,30,0.35)",
-    btnBorder: "rgba(40,200,80,0.3)",
-    bg: "#0f1a10",
-  },
-  yellow: {
-    r: 220,
-    g: 170,
-    b: 0,
-    glow: "rgba(200,150,0,0.2)",
-    arrow: "#facc15",
-    btn: "rgba(180,130,0,0.35)",
-    btnBorder: "rgba(240,190,0,0.3)",
-    bg: "#1a1700",
-  },
-} as const;
-
-type ThemeKey = keyof typeof THEMES;
-
-/* ───────────────────────────────────────── */
-/* Animation helper                         */
-/* ───────────────────────────────────────── */
 
 const fu = (delay = 0) => ({
   initial: { opacity: 0, y: 22 },
@@ -70,38 +16,7 @@ const fu = (delay = 0) => ({
   transition: { duration: 0.6, ease: easeOut, delay },
 });
 
-/* ───────────────────────────────────────── */
-/* Word Cycler                              */
-/* ───────────────────────────────────────── */
-
-const WORDS = ["Interfaces.", "Products.", "Experiences.", "Ideas."];
-
-const WordCycler = () => {
-  const [index, setIndex] = useState(0);
-
-  useEffect(() => {
-    const t = setInterval(() => setIndex((i) => (i + 1) % WORDS.length), 2200);
-    return () => clearInterval(t);
-  }, []);
-
-  return (
-    <span className="relative inline-block overflow-hidden">
-      <motion.span
-        key={index}
-        initial={{ y: 40, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.45, ease: easeOut }}
-      >
-        {WORDS[index]}
-      </motion.span>
-    </span>
-  );
-};
-
-/* ───────────────────────────────────────── */
-/* Components List                          */
-/* ───────────────────────────────────────── */
-
+/* ── Components list ─────────────────────────────────────────────── */
 const COMPONENTS = [
   {
     id: "flip-cards",
@@ -116,7 +31,7 @@ const COMPONENTS = [
     title: "Hero Section",
     description: "Clean minimal hero with cycling word animation",
     tag: "Layout",
-    tagColor: "#60a5fa",
+    tagColor: "#4ade80",
     preview: <HeroSection />,
   },
   {
@@ -124,7 +39,7 @@ const COMPONENTS = [
     title: "Floating Menu",
     description: "Floating Menu with Animation on Click",
     tag: "Menu",
-    tagColor: "#60a5fa",
+    tagColor: "#a78bfa",
     preview: <SpeeddialButtons />,
   },
   {
@@ -132,7 +47,7 @@ const COMPONENTS = [
     title: "CTA Section",
     description: "CTA Section with Animation",
     tag: "CTA",
-    tagColor: "#60a5fa",
+    tagColor: "#fb923c",
     preview: <CTASection />,
   },
   {
@@ -140,68 +55,85 @@ const COMPONENTS = [
     title: "Bento Grid",
     description: "Feature Section using Bento Grid",
     tag: "Bento",
-    tagColor: "#60a5fa",
+    tagColor: "#f472b6",
     preview: <BentoGrid />,
   },
 ];
 
-/* ───────────────────────────────────────── */
-/* Thumbnail Components                     */
-/* ───────────────────────────────────────── */
+/* ── Thumbnails ──────────────────────────────────────────────────── */
+const ThumbFlipCards = () => (
+  <div className="w-full h-full flex items-center justify-center gap-2 bg-black">
+    {["gray", "gray", "gray", "gray"].map((bg, i) => (
+      <div
+        key={i}
+        className="w-12 h-16 sm:w-16 sm:h-20 rounded-xl"
+        style={{
+          background: bg,
+          border: "1px solid rgba(255,255,255,0.08)",
+          position: "relative",
+          overflow: "hidden",
+        }}
+      >
+        <div
+          style={{
+            position: "absolute",
+            inset: 0,
+            background: `radial-gradient(circle at 50% 40%, ${["#fff", "#fff", "#fff", "#fff"][i]}, transparent 70%)`,
+          }}
+        />
+      </div>
+    ))}
+  </div>
+);
 
 const ThumbHero = () => (
   <div className="w-full h-full flex flex-col items-center justify-center gap-2 bg-black">
     <div className="w-16 h-2 rounded-full bg-white" />
-    <div className="w-24 h-2 rounded-full bg-white" />
+    <div className="w-24 h-2 rounded-full bg-white/60" />
+    <div className="flex gap-2 mt-2">
+      <div className="w-14 h-5 rounded-full bg-white" />
+      <div className="w-14 h-5 rounded-full border border-white/40" />
+    </div>
   </div>
 );
 
 const ThumbMenu = () => (
   <div className="w-full h-full flex items-center justify-center bg-black">
-    <div className="relative w-28 h-28 flex items-center justify-center">
+    <div className="relative w-24 h-24 flex items-center justify-center">
       {Array.from({ length: 5 }).map((_, i) => (
         <div
           key={i}
-          className="absolute w-8 h-8 bg-white rounded-full"
-          style={{
-            transform: `rotate(${i * 72}deg) translateY(-45px)`,
-          }}
+          className="absolute w-6 h-6 bg-white rounded-full"
+          style={{ transform: `rotate(${i * 72}deg) translateY(-38px)` }}
         />
       ))}
+      <div className="w-8 h-8 rounded-full bg-white/90" />
     </div>
   </div>
 );
 
 const ThumbCTA = () => (
   <div className="w-full h-full flex items-center justify-center bg-black">
-    <div className="w-60 h-28 rounded-sm bg-orange-100"></div>
+    <div className="w-40 h-20 sm:w-52 sm:h-24 rounded-xl bg-gray-100/10 border border-gray-200/20 flex flex-col items-center justify-center gap-2">
+      <div className="w-24 h-2 rounded-full bg-gray-200/40" />
+      <div className="w-16 h-5 rounded-full bg-gray-400/60" />
+    </div>
   </div>
 );
 
 const ThumbBento = () => (
   <div className="w-full h-full flex items-center justify-center bg-black">
-    <div className="grid grid-cols-3 gap-2">
+    <div className="grid grid-cols-3 gap-1.5">
       {Array.from({ length: 6 }).map((_, i) => (
-        <div key={i} className="h-7 w-16 bg-white rounded-md"></div>
+        <div key={i} className="h-6 w-12 sm:w-16 bg-white/80 rounded-md" />
       ))}
     </div>
   </div>
 );
 
-const ThumbFlipCards = () => (
-  <div className="w-full h-full flex items-center justify-center gap-2 bg-black">
-    {Array.from({ length: 4 }).map((_, i) => (
-      <div key={i} className="w-16 h-20 rounded-xl bg-white" />
-    ))}
-  </div>
-);
-
 const THUMBS = [ThumbFlipCards, ThumbHero, ThumbMenu, ThumbCTA, ThumbBento];
 
-/* ───────────────────────────────────────── */
-/* Showcase Page                            */
-/* ───────────────────────────────────────── */
-
+/* ── Showcase page ───────────────────────────────────────────────── */
 export default function ComponentShowcase() {
   const [active, setActive] = useState<number | null>(null);
 
@@ -215,25 +147,38 @@ export default function ComponentShowcase() {
 
   useEffect(() => {
     document.body.style.overflow = active !== null ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
   }, [active]);
 
   return (
     <div className="min-h-screen bg-[#0f0f0f] text-white">
-      {/* Header */}
-      <div className="px-10 py-10 border-b border-white/5">
+      {/* ── Header ── */}
+      <div className="px-5 sm:px-8 md:px-10 py-8 sm:py-10 border-b border-white/5">
         <motion.div {...fu()}>
-          <h1 className="text-4xl font-bold">Unique Component Collection</h1>
-          <p className="text-gray-500 mt-2">
+          <p className="text-[10px] sm:text-xs uppercase tracking-widest text-gray-600 mb-2">
+            Daily components
+          </p>
+          <h1
+            className="text-2xl sm:text-3xl md:text-4xl font-bold leading-tight"
+            style={{
+              fontFamily: "'Syne', sans-serif",
+              letterSpacing: "-0.02em",
+            }}
+          >
+            Unique Component Collection
+          </h1>
+          <p className="text-gray-500 mt-2 text-sm">
             Click any card to preview the component
           </p>
         </motion.div>
       </div>
 
-      {/* Grid */}
-      <div className="px-10 py-10 grid grid-cols-3 gap-6">
+      {/* ── Grid ── */}
+      <div className="px-5 sm:px-8 md:px-10 py-8 sm:py-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 md:gap-6">
         {COMPONENTS.map((comp, i) => {
           const Thumb = THUMBS[i];
-
           return (
             <motion.div
               key={comp.id}
@@ -241,10 +186,8 @@ export default function ComponentShowcase() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.08, duration: 0.5 }}
               onClick={() => setActive(i)}
-              whileHover={{
-                y: -6,
-                boxShadow: "0 25px 60px rgba(0,0,0,0.55)",
-              }}
+              whileHover={{ y: -6, boxShadow: "0 25px 60px rgba(0,0,0,0.55)" }}
+              whileTap={{ scale: 0.98 }}
               className="rounded-2xl overflow-hidden cursor-pointer group"
               style={{
                 border: "1px solid rgba(255,255,255,0.07)",
@@ -253,26 +196,64 @@ export default function ComponentShowcase() {
             >
               {/* Thumbnail */}
               <div
-                style={{ height: 180 }}
                 className="overflow-hidden transition-transform duration-300 group-hover:scale-[1.02]"
+                style={{ height: 160 }}
               >
                 <Thumb />
               </div>
 
               {/* Info */}
-              <div className="p-5 border-t border-white/5">
-                <h3 className="font-semibold">{comp.title}</h3>
-                <p className="text-gray-500 text-sm mt-1">{comp.description}</p>
+              <div className="p-4 sm:p-5 border-t border-white/5">
+                <div className="flex items-start justify-between gap-2 mb-1.5">
+                  <h3
+                    className="font-semibold text-[14px] sm:text-[15px]"
+                    style={{ fontFamily: "'Syne', sans-serif" }}
+                  >
+                    {comp.title}
+                  </h3>
+                  <span
+                    className="text-[10px] px-2 py-0.5 rounded-full font-medium flex-shrink-0"
+                    style={{
+                      background: `${comp.tagColor}18`,
+                      color: comp.tagColor,
+                      border: `1px solid ${comp.tagColor}30`,
+                    }}
+                  >
+                    {comp.tag}
+                  </span>
+                </div>
+                <p className="text-gray-500 text-xs sm:text-sm leading-relaxed">
+                  {comp.description}
+                </p>
+                <div
+                  className="flex items-center gap-1 mt-3 text-[11px] sm:text-[12px] font-medium"
+                  style={{ color: comp.tagColor }}
+                >
+                  <span>Preview</span>
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    width="11"
+                    height="11"
+                    stroke="currentColor"
+                    strokeWidth="2.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path d="M5 12h14M13 6l6 6-6 6" />
+                  </svg>
+                </div>
               </div>
             </motion.div>
           );
         })}
       </div>
 
-      {/* Modal */}
+      {/* ── Modal ── */}
       <AnimatePresence>
         {active !== null && (
           <>
+            {/* Backdrop */}
             <motion.div
               className="fixed inset-0 bg-black/80 backdrop-blur-sm z-40"
               initial={{ opacity: 0 }}
@@ -281,28 +262,94 @@ export default function ComponentShowcase() {
               onClick={() => setActive(null)}
             />
 
+            {/* Panel — full screen on mobile, inset on desktop */}
             <motion.div
-              className="fixed inset-[5%] bg-[#0f0f0f] z-50 rounded-2xl overflow-hidden flex flex-col"
-              initial={{ opacity: 0, scale: 0.93, y: 24 }}
+              className="fixed z-50 bg-[#0f0f0f] overflow-hidden flex flex-col"
+              style={{
+                inset: "0",
+                borderRadius: 0,
+              }}
+              initial={{ opacity: 0, scale: 0.96, y: 30 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.95, y: 16 }}
+              exit={{ opacity: 0, scale: 0.97, y: 20 }}
               transition={{ duration: 0.35, ease: easeOut }}
+              // Override inset for md+ screens via inline style trick
             >
-              {/* Close Button */}
-              <button
-                onClick={() => setActive(null)}
-                className="absolute top-5 right-5 z-50 w-10 h-10 flex items-center justify-center
-               rounded-full bg-white/10 hover:bg-white/20
-               border border-white/20 text-white text-lg
-               backdrop-blur-md transition"
+              {/* Use a responsive wrapper inside for the actual modal sizing */}
+              <div
+                className="absolute inset-0 md:inset-[4%] md:rounded-2xl overflow-hidden flex flex-col bg-[#0f0f0f]"
+                style={{
+                  border: "1px solid rgba(255,255,255,0.08)",
+                  boxShadow: "0 40px 100px rgba(0,0,0,0.6)",
+                }}
               >
-                ✕
-              </button>
-              {COMPONENTS[active].preview}
+                {/* Modal header */}
+                <div
+                  className="flex-shrink-0 flex items-center justify-between px-4 sm:px-6 py-3 sm:py-4 border-b border-white/7"
+                  style={{
+                    background: "rgba(15,15,15,0.95)",
+                    backdropFilter: "blur(12px)",
+                    borderBottom: "1px solid rgba(255,255,255,0.07)",
+                  }}
+                >
+                  <div className="flex items-center gap-2 sm:gap-3 min-w-0">
+                    <span
+                      className="text-[10px] px-2 py-0.5 rounded-full font-medium flex-shrink-0"
+                      style={{
+                        background: `${COMPONENTS[active].tagColor}18`,
+                        color: COMPONENTS[active].tagColor,
+                        border: `1px solid ${COMPONENTS[active].tagColor}30`,
+                      }}
+                    >
+                      {COMPONENTS[active].tag}
+                    </span>
+                    <span
+                      className="text-white font-semibold text-[13px] sm:text-[15px] truncate"
+                      style={{ fontFamily: "'Syne', sans-serif" }}
+                    >
+                      {COMPONENTS[active].title}
+                    </span>
+                  </div>
+
+                  {/* Close button */}
+                  <motion.button
+                    onClick={() => setActive(null)}
+                    whileHover={{ background: "rgba(255,255,255,0.12)" }}
+                    whileTap={{ scale: 0.92 }}
+                    className="flex-shrink-0 w-8 h-8 sm:w-9 sm:h-9 rounded-full flex items-center justify-center cursor-pointer text-gray-400 ml-3"
+                    style={{
+                      border: "1px solid rgba(255,255,255,0.12)",
+                      background: "rgba(255,255,255,0.05)",
+                    }}
+                  >
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      width="13"
+                      height="13"
+                      stroke="currentColor"
+                      strokeWidth="2.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <path d="M18 6L6 18M6 6l12 12" />
+                    </svg>
+                  </motion.button>
+                </div>
+
+                {/* Component content */}
+                <div className="flex-1 overflow-auto">
+                  {COMPONENTS[active].preview}
+                </div>
+              </div>
             </motion.div>
           </>
         )}
       </AnimatePresence>
+
+      <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:wght@400;500;600&display=swap');
+      `}</style>
     </div>
   );
 }
