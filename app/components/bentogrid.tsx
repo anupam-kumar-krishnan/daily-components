@@ -737,7 +737,6 @@ export default function BentoGrid() {
             <motion.div
               key={i}
               custom={i}
-              variants={fadeUp}
               initial="hidden"
               animate="visible"
               whileHover="hover"
@@ -763,7 +762,6 @@ export default function BentoGrid() {
             <motion.div
               key={i}
               custom={i + 2}
-              variants={fadeUp}
               initial="hidden"
               animate="visible"
               style={{ borderRadius: 20 }}
