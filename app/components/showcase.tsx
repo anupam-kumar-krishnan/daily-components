@@ -178,7 +178,7 @@ export default function ComponentShowcase() {
   return (
     <div className="min-h-screen bg-[#0f0f0f] text-white">
       {/* ── Header ── */}
-      <div className="px-5 sm:px-8 md:px-10 py-8 sm:py-10 border-b border-white/5">
+      <div className="px-5 sm:px-8 md:px-10 py-8 sm:py-10 border-b border-white/5 flex items-start justify-between gap-6">
         <motion.div {...fu()}>
           <p className="text-[10px] sm:text-xs uppercase tracking-widest text-gray-600 mb-2">
             Daily components
@@ -196,6 +196,44 @@ export default function ComponentShowcase() {
             Click any card to preview the component
           </p>
         </motion.div>
+
+        <div className="flex flex-col gap-2">
+          {/* X (Twitter) profile link */}
+          <span className=" text-gray-500 font-medium">Follow The Journey</span>
+          <a
+            href="https://x.com/kuma19028"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="shrink-0 flex items-center gap-2 px-3 py-2 rounded-xl text-gray-400 hover:text-white transition-all duration-200"
+            style={{
+              border: "1px solid rgba(255,255,255,0.08)",
+              background: "rgba(255,255,255,0.03)",
+            }}
+            onMouseEnter={(e) => {
+              (e.currentTarget as HTMLAnchorElement).style.background =
+                "rgba(255,255,255,0.07)";
+              (e.currentTarget as HTMLAnchorElement).style.borderColor =
+                "rgba(255,255,255,0.15)";
+            }}
+            onMouseLeave={(e) => {
+              (e.currentTarget as HTMLAnchorElement).style.background =
+                "rgba(255,255,255,0.03)";
+              (e.currentTarget as HTMLAnchorElement).style.borderColor =
+                "rgba(255,255,255,0.08)";
+            }}
+          >
+            <svg
+              viewBox="0 0 24 24"
+              width="15"
+              height="15"
+              fill="currentColor"
+              aria-label="X (Twitter)"
+            >
+              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.912-5.622Zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+            </svg>
+            <span className="text-[14px] font-medium">@kuma19028</span>
+          </a>
+        </div>
       </div>
 
       {/* ── Grid ── */}
