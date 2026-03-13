@@ -1,16 +1,8 @@
 "use client";
 
 import { FC, useRef } from "react";
-import {
-  motion,
-  useInView,
-  animate,
-  useMotionValue,
-  useTransform,
-  cubicBezier,
-} from "framer-motion";
+import { motion, useInView } from "framer-motion";
 
-/* ─── Shared fade-up variant ──────────────── */
 const fadeUp = {
   hidden: { opacity: 0, y: 22 },
   visible: (i: number) => ({
@@ -19,23 +11,11 @@ const fadeUp = {
     transition: {
       duration: 0.6,
       delay: i * 0.1,
-      ease: cubicBezier(0.22, 1, 0.36, 1),
+      ease: [0.22, 1, 0.36, 1],
     },
   }),
 };
 
-/* ─── Shared card hover ───────────────────── */
-const cardHover = {
-  rest: { scale: 1, y: 0, boxShadow: "0 0px 0px rgba(0,0,0,0)" },
-  hover: {
-    scale: 1.018,
-    y: -5,
-    boxShadow: "0 24px 60px rgba(0,0,0,0.55)",
-    transition: { duration: 0.25, ease: [0.34, 1.3, 0.64, 1] },
-  },
-};
-
-/* ─── Shared inner card ───────────────────── */
 const CARD_STYLE: React.CSSProperties = {
   background: "#131c2e",
   border: "1px solid rgba(255,255,255,0.07)",
@@ -46,7 +26,6 @@ const CARD_STYLE: React.CSSProperties = {
   height: "100%",
 };
 
-/* ─── Mock wireframe base ─────────────────── */
 const MockBase: FC<{ children?: React.ReactNode }> = ({ children }) => (
   <div
     className="relative w-full overflow-hidden"
@@ -87,15 +66,10 @@ const MockBase: FC<{ children?: React.ReactNode }> = ({ children }) => (
   </div>
 );
 
-/* ══════════════════════════════════════════
-   CARD 1 — Harness AI to Guide Your Design
-   Animation: Generate button pulses + floats
-══════════════════════════════════════════ */
 const Card1: FC = () => (
   <div style={CARD_STYLE}>
     <div className="relative mb-5">
       <MockBase />
-      {/* Generate button — floats up/down + glows */}
       <motion.button
         className="absolute flex items-center gap-1.5 rounded-lg text-white font-semibold"
         style={{
@@ -138,7 +112,6 @@ const Card1: FC = () => (
         Generate
       </motion.button>
 
-      {/* Shimmer line scanning down */}
       <motion.div
         className="absolute left-0 right-0 pointer-events-none"
         style={{
@@ -166,10 +139,6 @@ const Card1: FC = () => (
   </div>
 );
 
-/* ══════════════════════════════════════════
-   CARD 2 — Design With Your Brand in Mind
-   Animation: cursor drifts + selection box pulses
-══════════════════════════════════════════ */
 const Card2: FC = () => (
   <div style={CARD_STYLE}>
     <div className="relative mb-5">
@@ -178,7 +147,6 @@ const Card2: FC = () => (
         className="absolute"
         style={{ top: 28, right: 20, width: 130, height: 72 }}
       >
-        {/* Pulsing dashed selection box */}
         <motion.svg
           width="130"
           height="72"
@@ -221,7 +189,6 @@ const Card2: FC = () => (
           ))}
         </motion.svg>
 
-        {/* Cursor drifting diagonally */}
         <motion.svg
           width="28"
           height="28"
@@ -269,38 +236,6 @@ const Card2: FC = () => (
   </div>
 );
 
-/* ══════════════════════════════════════════
-   CARD 3 — Seamless Connections
-   Animation: icons float on arcs, center pulses
-══════════════════════════════════════════ */
-const orbitIcons = [
-  { top: 12, left: 36, delay: 0, bg: "#fff", size: 36, content: "gmail" },
-  {
-    top: 24,
-    left: "38%",
-    delay: 0.4,
-    bg: "#1e293b",
-    size: 34,
-    content: "star",
-  },
-  {
-    top: 32,
-    right: 40,
-    delay: 0.8,
-    bg: "#1a2844",
-    size: 34,
-    content: "triangle",
-  },
-  {
-    bottom: 36,
-    left: 28,
-    delay: 1.2,
-    bg: "#1a2844",
-    size: 34,
-    content: "blender",
-  },
-];
-
 const Card3: FC = () => (
   <div style={CARD_STYLE}>
     <div
@@ -341,7 +276,6 @@ const Card3: FC = () => (
         ))}
       </svg>
 
-      {/* Center link icon */}
       <motion.div
         className="absolute flex items-center justify-center rounded-full"
         style={{
@@ -377,7 +311,6 @@ const Card3: FC = () => (
         </svg>
       </motion.div>
 
-      {/* Gmail */}
       <motion.div
         className="absolute flex items-center justify-center rounded-xl"
         style={{
@@ -406,7 +339,6 @@ const Card3: FC = () => (
         </svg>
       </motion.div>
 
-      {/* Star/AI */}
       <motion.div
         className="absolute flex items-center justify-center rounded-full"
         style={{
@@ -433,7 +365,6 @@ const Card3: FC = () => (
         </svg>
       </motion.div>
 
-      {/* Triangle */}
       <motion.div
         className="absolute flex items-center justify-center rounded-xl"
         style={{
@@ -458,7 +389,6 @@ const Card3: FC = () => (
         </svg>
       </motion.div>
 
-      {/* Blender */}
       <motion.div
         className="absolute flex items-center justify-center rounded-xl"
         style={{
@@ -501,10 +431,6 @@ const Card3: FC = () => (
   </div>
 );
 
-/* ══════════════════════════════════════════
-   CARD 4 — SEO Tools Built-In
-   Animation: chart draws in, dot bounces, badge counts up
-══════════════════════════════════════════ */
 const Card4: FC = () => {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: "-60px" });
@@ -520,7 +446,6 @@ const Card4: FC = () => {
           border: "1px solid rgba(255,255,255,0.07)",
         }}
       >
-        {/* Badge */}
         <motion.div
           className="absolute top-3 left-3 flex items-center gap-1.5 rounded-full px-2.5 py-1 z-10"
           style={{
@@ -601,7 +526,6 @@ const Card4: FC = () => {
             d="M0 130 C30 125,50 118,80 110 C110 102,130 95,160 60 C175 40,185 30,200 35 C215 40,235 55,260 50 L260 148 L0 148Z"
             fill="url(#chartFill2)"
           />
-          {/* Animated draw-in line */}
           <motion.path
             d="M0 130 C30 125,50 118,80 110 C110 102,130 95,160 60 C175 40,185 30,200 35 C215 40,235 55,260 50"
             stroke="#3b82f6"
@@ -615,7 +539,6 @@ const Card4: FC = () => {
           />
         </svg>
 
-        {/* Bouncing peak dot */}
         <motion.div
           className="absolute rounded-full"
           style={{
@@ -647,10 +570,6 @@ const Card4: FC = () => {
   );
 };
 
-/* ══════════════════════════════════════════
-   CARD 5 — Responsive Design
-   Animation: devices gently float at different rates
-══════════════════════════════════════════ */
 const Card5: FC = () => (
   <div style={CARD_STYLE}>
     <div
@@ -662,7 +581,6 @@ const Card5: FC = () => (
         border: "1px solid rgba(255,255,255,0.07)",
       }}
     >
-      {/* Tablet */}
       <motion.div
         className="absolute rounded-xl overflow-hidden"
         style={{
@@ -716,7 +634,6 @@ const Card5: FC = () => (
         </div>
       </motion.div>
 
-      {/* Phone */}
       <motion.div
         className="absolute rounded-2xl"
         style={{
@@ -768,7 +685,6 @@ const Card5: FC = () => (
         </div>
       </motion.div>
 
-      {/* Responsive grid dots background */}
       {[...Array(12)].map((_, i) => (
         <motion.div
           key={i}
@@ -806,21 +722,17 @@ const Card5: FC = () => (
   </div>
 );
 
-/* ══════════════════════════════════════════
-   ROOT
-══════════════════════════════════════════ */
 export default function BentoGrid() {
   return (
     <div
-      className="min-h-screen w-full flex items-center justify-center p-10"
+      className="min-h-screen w-full flex items-center justify-center p-4 sm:p-6 md:p-10"
       style={{
         background: "#0a0e18",
         fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
       }}
     >
       <div className="w-full" style={{ maxWidth: 920 }}>
-        {/* Row 1 — 2 equal cards */}
-        <div className="grid grid-cols-2 gap-4 mb-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 mb-3 sm:mb-4">
           {[Card1, Card2].map((Card, i) => (
             <motion.div
               key={i}
@@ -846,8 +758,7 @@ export default function BentoGrid() {
           ))}
         </div>
 
-        {/* Row 2 — 3 equal cards */}
-        <div className="grid grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
           {[Card3, Card4, Card5].map((Card, i) => (
             <motion.div
               key={i}
