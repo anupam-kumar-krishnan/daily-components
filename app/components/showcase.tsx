@@ -7,6 +7,7 @@ import HeroSection from "./herosection";
 import CTASection from "./ctasection";
 import SpeeddialButtons from "./speeddialbuttons";
 import Flipcard from "./flipcard";
+import Pillnavbar from "./pillnavbar";
 
 const easeOut = [0.22, 1, 0.36, 1] as const;
 
@@ -18,6 +19,14 @@ const fu = (delay = 0) => ({
 
 /* ── Components list ─────────────────────────────────────────────── */
 const COMPONENTS = [
+  {
+    id: "pill-navbar",
+    title: "Pill Navbar",
+    description: "Animated navbar on scroll",
+    tag: "Interactive",
+    tagColor: "#60a5fa",
+    preview: <Pillnavbar isInsideModal />,
+  },
   {
     id: "flip-cards",
     title: "Flip Cards",
@@ -131,7 +140,21 @@ const ThumbBento = () => (
   </div>
 );
 
-const THUMBS = [ThumbFlipCards, ThumbHero, ThumbMenu, ThumbCTA, ThumbBento];
+const ThumbPill = () => (
+  <div className="w-full h-full flex flex-col gap-10 items-center justify-center bg-black">
+    <div className="w-80 h-6 bg-white"></div>
+    <div className="w-50 h-6 rounded-2xl bg-white"></div>
+  </div>
+);
+
+const THUMBS = [
+  ThumbPill,
+  ThumbFlipCards,
+  ThumbHero,
+  ThumbMenu,
+  ThumbCTA,
+  ThumbBento,
+];
 
 /* ── Showcase page ───────────────────────────────────────────────── */
 export default function ComponentShowcase() {
@@ -212,7 +235,7 @@ export default function ComponentShowcase() {
                     {comp.title}
                   </h3>
                   <span
-                    className="text-[10px] px-2 py-0.5 rounded-full font-medium flex-shrink-0"
+                    className="text-[10px] px-2 py-0.5 rounded-full font-medium shrink-0"
                     style={{
                       background: `${comp.tagColor}18`,
                       color: comp.tagColor,
@@ -285,7 +308,7 @@ export default function ComponentShowcase() {
               >
                 {/* Modal header */}
                 <div
-                  className="flex-shrink-0 flex items-center justify-between px-4 sm:px-6 py-3 sm:py-4 border-b border-white/7"
+                  className="shrink-0 flex items-center justify-between px-4 sm:px-6 py-3 sm:py-4 border-b border-white/7"
                   style={{
                     background: "rgba(15,15,15,0.95)",
                     backdropFilter: "blur(12px)",
@@ -294,7 +317,7 @@ export default function ComponentShowcase() {
                 >
                   <div className="flex items-center gap-2 sm:gap-3 min-w-0">
                     <span
-                      className="text-[10px] px-2 py-0.5 rounded-full font-medium flex-shrink-0"
+                      className="text-[10px] px-2 py-0.5 rounded-full font-medium shrink-0"
                       style={{
                         background: `${COMPONENTS[active].tagColor}18`,
                         color: COMPONENTS[active].tagColor,
@@ -316,7 +339,7 @@ export default function ComponentShowcase() {
                     onClick={() => setActive(null)}
                     whileHover={{ background: "rgba(255,255,255,0.12)" }}
                     whileTap={{ scale: 0.92 }}
-                    className="flex-shrink-0 w-8 h-8 sm:w-9 sm:h-9 rounded-full flex items-center justify-center cursor-pointer text-gray-400 ml-3"
+                    className="shrink-0 w-8 h-8 sm:w-9 sm:h-9 rounded-full flex items-center justify-center cursor-pointer text-gray-400 ml-3"
                     style={{
                       border: "1px solid rgba(255,255,255,0.12)",
                       background: "rgba(255,255,255,0.05)",
