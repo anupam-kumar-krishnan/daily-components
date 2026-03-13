@@ -52,12 +52,14 @@ function MoonIcon() {
 
 export default function Navbar({
   isInsideModal = false,
-}: { isInsideModal?: boolean } = {}) {
-  const [isDark, setIsDark] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-  const [activeItem, setActiveItem] = useState("Home");
-  const [hoveredItem, setHoveredItem] = useState(null);
-  const [iconSwap, setIconSwap] = useState(false);
+}: {
+  isInsideModal?: boolean;
+}) {
+  const [isDark, setIsDark] = useState<boolean>(false);
+  const [scrolled, setScrolled] = useState<boolean>(false);
+  const [activeItem, setActiveItem] = useState<string>("Home");
+  const [hoveredItem, setHoveredItem] = useState<string | null>(null);
+  const [iconSwap, setIconSwap] = useState<boolean>(false);
 
   const containerRef = useRef<HTMLDivElement>(null);
 
