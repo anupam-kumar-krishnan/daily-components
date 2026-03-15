@@ -8,6 +8,7 @@ import CTASection from "./ctasection";
 import SpeeddialButtons from "./speeddialbuttons";
 import Flipcard from "./flipcard";
 import Pillnavbar from "./pillnavbar";
+import BentoBlack from "./bentoblack";
 
 const easeOut = [0.22, 1, 0.36, 1] as const;
 
@@ -24,7 +25,7 @@ const COMPONENTS = [
     title: "Pill Navbar",
     description: "Animated navbar on scroll",
     tag: "Interactive",
-    tagColor: "#60a5fa",
+    tagColor: "#4ade80",
     preview: <Pillnavbar isInsideModal />,
   },
   {
@@ -32,7 +33,7 @@ const COMPONENTS = [
     title: "Flip Cards",
     description: "3D flip animation with animated black hole rings",
     tag: "Interactive",
-    tagColor: "#60a5fa",
+    tagColor: "#4ade80",
     preview: <Flipcard />,
   },
   {
@@ -48,7 +49,7 @@ const COMPONENTS = [
     title: "Floating Menu",
     description: "Floating Menu with Animation on Click",
     tag: "Menu",
-    tagColor: "#a78bfa",
+    tagColor: "#4ade80",
     preview: <SpeeddialButtons />,
   },
   {
@@ -56,7 +57,7 @@ const COMPONENTS = [
     title: "CTA Section",
     description: "CTA Section with Animation",
     tag: "CTA",
-    tagColor: "#fb923c",
+    tagColor: "#4ade80",
     preview: <CTASection />,
   },
   {
@@ -64,12 +65,30 @@ const COMPONENTS = [
     title: "Bento Grid",
     description: "Feature Section using Bento Grid",
     tag: "Bento",
-    tagColor: "#f472b6",
+    tagColor: "#4ade80",
     preview: <BentoGrid />,
+  },
+  {
+    id: "blackbento",
+    title: "Black Themed Bento Grid",
+    description: "Feature Section using Bento Grid in Black Theme",
+    tag: "Bento",
+    tagColor: "#4ade80",
+    preview: <BentoBlack />,
   },
 ];
 
 /* ── Thumbnails ──────────────────────────────────────────────────── */
+const ThumbBentoBlack = () => (
+  <div className="w-full h-full flex items-center justify-center bg-black">
+    <div className="grid grid-cols-3 gap-1.5">
+      {Array.from({ length: 6 }).map((_, i) => (
+        <div key={i} className="h-6 w-12 sm:w-16 bg-white/80 rounded-md" />
+      ))}
+    </div>
+  </div>
+);
+
 const ThumbFlipCards = () => (
   <div className="w-full h-full flex items-center justify-center gap-2 bg-black">
     {["gray", "gray", "gray", "gray"].map((bg, i) => (
@@ -154,6 +173,7 @@ const THUMBS = [
   ThumbMenu,
   ThumbCTA,
   ThumbBento,
+  ThumbBentoBlack,
 ];
 
 /* ── Showcase page ───────────────────────────────────────────────── */
