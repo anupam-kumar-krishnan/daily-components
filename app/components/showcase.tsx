@@ -39,7 +39,7 @@ const COMPONENTS = [
   {
     id: "hero",
     title: "Hero Section",
-    description: "Clean minimal hero with cycling word animation",
+    description: "Hero section with subtle hover and border animation",
     tag: "Layout",
     tagColor: "#4ade80",
     preview: <HeroSection />,
@@ -119,8 +119,8 @@ const ThumbHero = () => (
     <div className="w-16 h-2 rounded-full bg-white" />
     <div className="w-24 h-2 rounded-full bg-white/60" />
     <div className="flex gap-2 mt-2">
-      <div className="w-14 h-5 rounded-full bg-white" />
-      <div className="w-14 h-5 rounded-full border border-white/40" />
+      <div className="w-25 h-12 rounded-xl bg-white" />
+      {/* <div className="w-14 h-5 rounded-full border border-white/40" /> */}
     </div>
   </div>
 );
