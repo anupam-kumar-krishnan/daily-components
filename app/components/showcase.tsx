@@ -9,6 +9,7 @@ import SpeeddialButtons from "./speeddialbuttons";
 import Flipcard from "./flipcard";
 import Pillnavbar from "./pillnavbar";
 import BentoBlack from "./bentoblack";
+import Footer from "./footer";
 
 const easeOut = [0.22, 1, 0.36, 1] as const;
 
@@ -75,6 +76,14 @@ const COMPONENTS = [
     tag: "Bento",
     tagColor: "#4ade80",
     preview: <BentoBlack />,
+  },
+  {
+    id: "footer",
+    title: "Footer",
+    description: "Footer with animation and a slight faded text at the bottom",
+    tag: "Footer",
+    tagColor: "#4ade80",
+    preview: <Footer />,
   },
 ];
 
@@ -159,6 +168,54 @@ const ThumbBento = () => (
   </div>
 );
 
+const ThumbFooter = () => (
+  <div className="w-full h-full flex items-center justify-center bg-black">
+    <div className="w-full max-w-65 flex flex-col gap-3 px-4">
+      {/* Top section: brand + nav columns */}
+      <div className="flex items-start justify-between gap-4">
+        {/* Brand / logo block */}
+        <div className="flex flex-col gap-1.5">
+          <div className="h-3 w-16 bg-white/90 rounded-sm" />
+          <div className="h-1.5 w-24 bg-white/30 rounded-sm" />
+          <div className="h-1.5 w-20 bg-white/30 rounded-sm" />
+          <div className="h-1.5 w-16 bg-white/30 rounded-sm" />
+          {/* Social icons row */}
+          <div className="flex gap-1 mt-1">
+            {Array.from({ length: 4 }).map((_, i) => (
+              <div key={i} className="h-2 w-2 bg-white/40 rounded-full" />
+            ))}
+          </div>
+        </div>
+
+        {/* Nav columns */}
+        <div className="flex gap-3">
+          {Array.from({ length: 3 }).map((_, col) => (
+            <div key={col} className="flex flex-col gap-1.5">
+              <div className="h-1.5 w-10 bg-white/80 rounded-sm" />
+              {Array.from({ length: 4 }).map((_, row) => (
+                <div key={row} className="h-1.5 w-10 bg-white/30 rounded-sm" />
+              ))}
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Divider */}
+      <div className="h-px w-full bg-white/10" />
+
+      {/* Bottom bar */}
+      <div className="flex items-center justify-between">
+        <div className="h-1.5 w-20 bg-white/25 rounded-sm" />
+        <div className="flex gap-2">
+          {Array.from({ length: 3 }).map((_, i) => (
+            <div key={i} className="h-1.5 w-8 bg-white/25 rounded-sm" />
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+);
+
 const ThumbPill = () => (
   <div className="w-full h-full flex flex-col gap-10 items-center justify-center bg-black">
     <div className="w-80 h-6 bg-white"></div>
@@ -174,6 +231,7 @@ const THUMBS = [
   ThumbCTA,
   ThumbBento,
   ThumbBentoBlack,
+  ThumbFooter,
 ];
 
 /* ── Showcase page ───────────────────────────────────────────────── */

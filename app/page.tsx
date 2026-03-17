@@ -6,6 +6,7 @@ import BentoBlack from "./components/bentoblack";
 import SpeedDialFAB from "./components/speeddialbuttons";
 import Flipcard from "./components/flipcard";
 import Showcase from "./components/showcase";
+import Footer from "./components/footer";
 
 export default function Home() {
   return (
@@ -16,8 +17,9 @@ export default function Home() {
       {/* <BentoBlack /> */}
       {/* <SpeedDialFAB /> */}
       {/* <Flipcard /> */}
-      <Showcase />
+      {/* <Showcase /> */}
       {/* <BentoBlack /> */}
+      <Footer />
     </div>
   );
 }
