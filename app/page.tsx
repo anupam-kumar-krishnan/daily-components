@@ -17,9 +17,9 @@ export default function Home() {
       {/* <BentoBlack /> */}
       {/* <SpeedDialFAB /> */}
       {/* <Flipcard /> */}
-      {/* <Showcase /> */}
+      <Showcase />
       {/* <BentoBlack /> */}
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 }
