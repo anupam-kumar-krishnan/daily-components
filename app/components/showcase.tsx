@@ -10,6 +10,7 @@ import Flipcard from "./flipcard";
 import Pillnavbar from "./pillnavbar";
 import BentoBlack from "./bentoblack";
 import Footer from "./footer";
+import Login from "./login";
 
 const easeOut = [0.22, 1, 0.36, 1] as const;
 
@@ -84,6 +85,14 @@ const COMPONENTS = [
     tag: "Footer",
     tagColor: "#4ade80",
     preview: <Footer />,
+  },
+  {
+    id: "feature",
+    title: "Feature Section",
+    description: "Clean Feature Section with animation",
+    tag: "Feature",
+    tagColor: "#4ade80",
+    preview: <Login />,
   },
 ];
 
@@ -223,6 +232,18 @@ const ThumbPill = () => (
   </div>
 );
 
+const ThumbFeature = () => (
+  <div className="w-full h-full flex flex-col items-center justify-center bg-black">
+    <div className="w-16 h-2 rounded-full bg-white mb-2" />
+    <div className="w-24 h-2 rounded-full bg-white/60 mb-5" />
+    <div className="grid grid-cols-3 gap-1.5">
+      {Array.from({ length: 6 }).map((_, i) => (
+        <div key={i} className="h-7 w-7 sm:w-16 bg-white/80 rounded-md" />
+      ))}
+    </div>
+  </div>
+);
+
 const THUMBS = [
   ThumbPill,
   ThumbFlipCards,
@@ -232,6 +253,7 @@ const THUMBS = [
   ThumbBento,
   ThumbBentoBlack,
   ThumbFooter,
+  ThumbFeature,
 ];
 
 /* ── Showcase page ───────────────────────────────────────────────── */
