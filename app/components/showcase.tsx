@@ -340,8 +340,42 @@ const ThumbFooter = () => (
 
 const ThumbPill = () => (
   <div className="w-full h-full flex flex-col gap-10 items-center justify-center bg-black">
-    <div className="w-80 h-6 bg-white"></div>
-    <div className="w-50 h-6 rounded-2xl bg-white"></div>
+    <div className="flex-1 flex flex-col border-b border-white/6">
+      <nav className="w-screen h-8 bg-[#1e1e1e] border-b border-white/10 flex items-center gap-2 px-6 shrink-0">
+        {/* <div className="h-3 w-12 rounded-full bg-white/15 shrink-0" /> */}
+        <div className="flex-1 flex items-center justify-center gap-5">
+          <div className="h-3 w-3 rounded-full bg-white/15" />
+          <div className="h-2 w-8 rounded-full bg-white/15" />
+          <div className="h-2 w-8 rounded-full bg-white/15" />
+          <div className="h-2 w-8 rounded-full bg-white/15" />
+          <div className="h-2 w-8 rounded-full bg-white/15" />
+
+          <div className="h-5 w-12 rounded-sm bg-white/15" />
+        </div>
+        {/* <div className="h-5.5 w-16 rounded-md bg-white/15 shrink-0" /> */}
+      </nav>
+      {/* <div className="flex-1 flex flex-col justify-center gap-2 px-6">
+        <div className="h-2 w-[44%] rounded bg-white/15" />
+        <div className="h-2 w-[80%] rounded bg-white/15" />
+      </div> */}
+      <span className="px-30 pt-3 pb-2 text-[9px] tracking-widest uppercase text-white/25 font-mono">
+        on top
+      </span>
+    </div>
+
+    {/* ── Scrolled state ── */}
+    <div className="flex-1 flex flex-col -mt-8">
+      <div className="flex-1 flex items-center justify-center">
+        <nav className="w-45 h-7 bg-[#1e1e1e] border border-white/20 rounded-full flex items-center gap-2 px-4 overflow-hidden min-w-0">
+          <div className="h-2.5 w-4 rounded-full bg-white/15 shrink-0" />
+          <div className="flex-1 flex items-center justify-center gap-2 min-w-0"></div>
+          <div className="h-4 w-10 rounded-full bg-white/15 shrink-0" />
+        </nav>
+      </div>
+      <span className="px-6 pb-2 md:hidden lg:hidden text-[9px] tracking-widest uppercase text-white/25 font-mono">
+        on scroll
+      </span>
+    </div>
   </div>
 );
 
