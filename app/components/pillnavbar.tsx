@@ -158,6 +158,7 @@ export default function Navbar({
               width: scrolled ? "auto" : "100%",
               maxWidth: scrolled ? "740px" : "100%",
               overflow: "hidden",
+              overflowY: "hidden",
               transition,
             }}
           >

@@ -11,6 +11,7 @@ import Pillnavbar from "./pillnavbar";
 import BentoBlack from "./bentoblack";
 import Footer from "./footer";
 import Login from "./login";
+import CrystalCards from "./crystalcards";
 
 const easeOut = [0.22, 1, 0.36, 1] as const;
 
@@ -22,6 +23,14 @@ const fu = (delay = 0) => ({
 
 /* ── Components list ─────────────────────────────────────────────── */
 const COMPONENTS = [
+  {
+    id: "reactive-card",
+    title: "Reactive Card",
+    description: "Cards that feel alive on hover",
+    tag: "Card",
+    tagColor: "#4ade80",
+    preview: <CrystalCards />,
+  },
   {
     id: "pill-navbar",
     title: "Pill Navbar",
@@ -97,6 +106,110 @@ const COMPONENTS = [
 ];
 
 /* ── Thumbnails ──────────────────────────────────────────────────── */
+const ThumbReactiveCards = () => {
+  const shapes = [
+    <div
+      style={{
+        width: 0,
+        height: 0,
+        borderLeft: "14px solid transparent",
+        borderRight: "14px solid transparent",
+        borderBottom: "22px solid #333",
+        margin: "12px auto 10px",
+      }}
+    />,
+
+    <div
+      style={{
+        width: 26,
+        height: 26,
+        borderRadius: "50%",
+        background: "#333",
+        margin: "auto",
+      }}
+    />,
+
+    <div
+      style={{
+        width: 22,
+        height: 22,
+        background: "#333",
+        transform: "rotate(45deg)",
+        borderRadius: 2,
+        margin: "auto",
+      }}
+    />,
+  ];
+
+  return (
+    <div className="w-full h-full flex items-center justify-center gap-2 bg-black">
+      {shapes.map((shape, i) => (
+        <div
+          key={i}
+          style={{
+            width: 64,
+            height: 86,
+            borderRadius: 6,
+            background: "#1a1a1a",
+            border: "1px solid #2a2a2a",
+            padding: 5,
+            position: "relative",
+            overflow: "hidden",
+          }}
+        >
+          {/* Gem area */}
+          <div
+            style={{
+              width: "100%",
+              height: 46,
+              borderRadius: 4,
+              background: "#252525",
+              marginBottom: 8,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            {shape}
+          </div>
+
+          {/* Badge dot */}
+          <div
+            style={{
+              width: 10,
+              height: 10,
+              borderRadius: "50%",
+              background: "#2e2e2e",
+              margin: "-13px auto 6px",
+            }}
+          />
+
+          {/* Name bar */}
+          <div
+            style={{
+              height: 5,
+              borderRadius: 2,
+              background: "#303030",
+              width: "90%",
+              marginBottom: 3,
+            }}
+          />
+
+          {/* ID bar */}
+          <div
+            style={{
+              height: 4,
+              borderRadius: 2,
+              background: "#252525",
+              width: "50%",
+            }}
+          />
+        </div>
+      ))}
+    </div>
+  );
+};
+
 const ThumbBentoBlack = () => (
   <div className="w-full h-full flex items-center justify-center bg-black">
     <div className="grid grid-cols-3 gap-1.5">
@@ -245,6 +358,7 @@ const ThumbFeature = () => (
 );
 
 const THUMBS = [
+  ThumbReactiveCards,
   ThumbPill,
   ThumbFlipCards,
   ThumbHero,
