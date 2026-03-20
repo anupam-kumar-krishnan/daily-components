@@ -288,28 +288,104 @@ const ThumbFlipCards = () => (
 );
 
 const ThumbHero = () => (
-  <div className="w-full h-full flex flex-col items-center justify-center gap-2 bg-black">
-    <div className="w-16 h-2 rounded-full bg-white" />
-    <div className="w-24 h-2 rounded-full bg-white/60" />
-    <div className="flex gap-2 mt-2">
-      <div className="w-25 h-12 rounded-xl bg-white" />
-      {/* <div className="w-14 h-5 rounded-full border border-white/40" /> */}
+  <div className="w-full h-50 bg-black rounded-xl overflow-hidden flex flex-col">
+    {/* Navbar */}
+    <div className="w-[75%] pl-[28%] flex items-center justify-between px-3 py-1.5 border-b border-white/5 shrink-0">
+      <div className="flex items-center gap-3">
+        <div className="flex items-center gap-1">
+          <div className="w-2.5 h-2.5 rounded-xs bg-[#2a2a2a]" />
+          <div className="w-6 h-1.5 rounded-sm bg-[#2a2a2a]" />
+        </div>
+        <div className="flex gap-1.5">
+          <div className="w-4 h-1.5 rounded-sm bg-[#222] animate-pulse" />
+          <div className="w-5 h-1.5 rounded-sm bg-[#222] animate-pulse" />
+          <div className="w-4 h-1.5 rounded-sm bg-[#222] animate-pulse" />
+        </div>
+      </div>
+      <div className="w-8 h-3 rounded-full bg-[#2a2a2a]" />
+    </div>
+
+    <div className="flex flex-col items-center justify-center flex-1 px-4 gap-1 pt-1">
+      <div className="w-12 h-1 rounded-full bg-[#2a2a2a] mb-0.5 animate-pulse" />
+
+      <div className="w-20 h-1.5 rounded bg-[#333] animate-pulse" />
+      <div className="w-24 h-1.5 rounded bg-[#3a3a3a] animate-pulse" />
+
+      <div className="w-40 h-7 rounded bg-[#222] mt-0.5 animate-pulse" />
+    </div>
+
+    <div className="w-[60%] ml-[20%] mx-2 mb-1.5 bg-[#1a1a1a] border border-white/5 rounded-lg overflow-hidden shrink-0">
+      <div className="flex items-center gap-1.5 px-2 py-1 border-b border-white/5">
+        <div className="w-2 h-2 rounded-xs bg-[#2a2a2a] animate-pulse" />
+        <div className="w-5 h-1 rounded bg-[#2a2a2a] animate-pulse" />
+        <div className="ml-auto flex gap-1">
+          <div className="w-5 h-1.5 rounded bg-[#252525] animate-pulse" />
+          <div className="w-4 h-1.5 rounded bg-[#222] animate-pulse" />
+          <div className="w-4 h-1.5 rounded bg-[#222] animate-pulse" />
+          <div className="w-4 h-1.5 rounded bg-[#222] animate-pulse" />
+        </div>
+      </div>
+      {/* Summary row */}
+      <div className="flex items-center justify-between px-2 py-1.5 relative">
+        <div className="flex flex-col gap-0.5">
+          <div className="w-8 h-1 rounded bg-[#222]" />
+          <div className="w-10 h-1.5 rounded bg-[#333]" />
+        </div>
+        {/* Play circle */}
+        <div className="absolute left-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-[#2a2a2a]" />
+        <div className="flex flex-col gap-0.5 items-end">
+          <div className="w-8 h-1 rounded bg-[#222]" />
+          <div className="w-10 h-1.5 rounded bg-[#333]" />
+        </div>
+      </div>
+      {/* Stats row */}
+      <div className="grid grid-cols-4 gap-1 px-2 pb-1.5">
+        {[...Array(4)].map((_, i) => (
+          <div key={i} className="h-3 rounded bg-[#222]" />
+        ))}
+      </div>
     </div>
   </div>
 );
 
 const ThumbMenu = () => (
   <div className="w-full h-full flex items-center justify-center bg-black">
-    <div className="relative w-24 h-24 flex items-center justify-center">
-      {Array.from({ length: 5 }).map((_, i) => (
-        <div
-          key={i}
-          className="absolute w-6 h-6 bg-white rounded-full"
-          style={{ transform: `rotate(${i * 72}deg) translateY(-38px)` }}
-        />
-      ))}
-      <div className="w-8 h-8 rounded-full bg-white/90" />
+    <div className="relative flex items-center justify-center w-40 h-40">
+      <div className="absolute w-6 h-6 rounded-full bg-[#2a2a2a] animate-float-top animate-pulse" />
+      <div className="absolute w-6 h-6 rounded-full bg-[#2a2a2a] animate-float-left animate-pulse" />
+      <div className="absolute w-6 h-6 rounded-full bg-[#2a2a2a] animate-float-right animate-pulse" />
+      <div className="absolute w-6 h-6 rounded-full bg-[#2a2a2a] animate-float-bottom-left animate-pulse" />
+      <div className="absolute w-6 h-6 rounded-full bg-[#2a2a2a] animate-float-bottom-right animate-pulse" />
+      <div className="relative z-10 w-8 h-8 rounded-full bg-[#2a2a2a]" />
     </div>
+
+    <style>{`
+      @keyframes float-top {
+        0%, 100% { transform: translate(0, 0); opacity: 0; }
+        30%, 70% { transform: translate(0, -64px); opacity: 1; }
+      }
+      @keyframes float-left {
+        0%, 100% { transform: translate(0, 0); opacity: 0; }
+        30%, 70% { transform: translate(-64px, 0); opacity: 1; }
+      }
+      @keyframes float-right {
+        0%, 100% { transform: translate(0, 0); opacity: 0; }
+        30%, 70% { transform: translate(64px, 0); opacity: 1; }
+      }
+      @keyframes float-bottom-left {
+        0%, 100% { transform: translate(0, 0); opacity: 0; }
+        30%, 70% { transform: translate(40px, 56px); opacity: 1; }
+      }
+      @keyframes float-bottom-right {
+        0%, 100% { transform: translate(0, 0); opacity: 0; }
+        30%, 70% { transform: translate(-40px, 56px); opacity: 1; }
+      }
+      .animate-float-top          { animation: float-top          3s ease-in-out infinite; }
+      .animate-float-left         { animation: float-left         3s ease-in-out infinite 0.1s; }
+      .animate-float-right        { animation: float-right        3s ease-in-out infinite 0.1s; }
+      .animate-float-bottom-left  { animation: float-bottom-left  3s ease-in-out infinite 0.2s; }
+      .animate-float-bottom-right { animation: float-bottom-right 3s ease-in-out infinite 0.2s; }
+    `}</style>
   </div>
 );
 
@@ -383,16 +459,16 @@ const ThumbFooter = () => (
 const ThumbPill = () => (
   <div className="w-full h-full flex flex-col gap-10 items-center justify-center bg-black">
     <div className="flex-1 flex flex-col border-b border-white/6">
-      <nav className="w-screen h-8 bg-[#1e1e1e] border-b border-white/10 flex items-center gap-2 px-6 shrink-0">
+      <nav className="w-screen h-8 bg-black border-b border-white/10 flex items-center gap-2 px-6 shrink-0">
         {/* <div className="h-3 w-12 rounded-full bg-white/15 shrink-0" /> */}
         <div className="flex-1 flex items-center justify-center gap-5">
-          <div className="h-3 w-3 rounded-full bg-white/15" />
-          <div className="h-2 w-8 rounded-full bg-white/15" />
-          <div className="h-2 w-8 rounded-full bg-white/15" />
-          <div className="h-2 w-8 rounded-full bg-white/15" />
-          <div className="h-2 w-8 rounded-full bg-white/15" />
+          <div className="h-3.5 w-3.5 rounded-sm bg-white/15 animate-pulse" />
+          <div className="h-2 w-8 rounded-full bg-white/15 animate-pulse" />
+          <div className="h-2 w-8 rounded-full bg-white/15 animate-pulse" />
+          <div className="h-2 w-8 rounded-full bg-white/15 animate-pulse" />
+          <div className="h-2 w-8 rounded-full bg-white/15 animate-pulse" />
 
-          <div className="h-5 w-12 rounded-sm bg-white/15" />
+          <div className="h-5 w-12 rounded-sm bg-white/15 animate-pulse" />
         </div>
       </nav>
       <span className="px-30 pt-3 pb-2 text-[9px] tracking-widest uppercase text-white/25 font-mono">
@@ -403,10 +479,10 @@ const ThumbPill = () => (
     {/* ── Scrolled state ── */}
     <div className="flex-1 flex flex-col -mt-8">
       <div className="flex-1 flex items-center justify-center">
-        <nav className="w-45 h-7 bg-[#1e1e1e] border border-white/20 rounded-full flex items-center gap-2 px-4 overflow-hidden min-w-0">
-          <div className="h-2.5 w-4 rounded-full bg-white/15 shrink-0" />
+        <nav className="w-45 h-7 bg-[#111010] border border-gray-500/50 rounded-full flex items-center gap-2 px-4 overflow-hidden min-w-0">
+          <div className="h-2.5 w-4 rounded-full bg-white/15 shrink-0 animate-pulse" />
           <div className="flex-1 flex items-center justify-center gap-2 min-w-0"></div>
-          <div className="h-4 w-10 rounded-full bg-white/15 shrink-0" />
+          <div className="h-4 w-10 rounded-full bg-white/15 shrink-0 animate-pulse" />
         </nav>
       </div>
       <span className="px-6 pb-2 md:hidden lg:hidden text-[9px] tracking-widest uppercase text-white/25 font-mono">
