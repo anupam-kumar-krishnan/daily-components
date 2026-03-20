@@ -5,7 +5,7 @@ import { useRef, useEffect, useState } from "react";
 const NAV_LINKS = ["Product", "Customers", "About us"];
 const STATS = [
   { label: "New Contacts", value: "423" },
-  { label: "Payments", value: "$48,976" },
+  { label: "Payments", value: "₹5,80,900" },
   { label: "Paid Claims", value: "156" },
   { label: "Listings Covered", value: "87" },
 ];
