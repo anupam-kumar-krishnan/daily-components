@@ -41,20 +41,20 @@ const COMPONENTS = [
     preview: <CrystalCards />,
   },
   {
-    id: "pill-navbar",
-    title: "Pill Navbar",
-    description: "Animated navbar on scroll",
-    tag: "Interactive",
-    tagColor: "#4ade80",
-    preview: <Pillnavbar isInsideModal />,
-  },
-  {
     id: "flip-cards",
     title: "Flip Cards",
     description: "3D flip animation with animated black hole rings",
     tag: "Interactive",
     tagColor: "#4ade80",
     preview: <Flipcard />,
+  },
+  {
+    id: "pill-navbar",
+    title: "Pill Navbar",
+    description: "Animated navbar on scroll",
+    tag: "Interactive",
+    tagColor: "#4ade80",
+    preview: <Pillnavbar isInsideModal />,
   },
   {
     id: "hero",
@@ -168,6 +168,7 @@ const ThumbReactiveCards = () => {
         >
           {/* Gem area */}
           <div
+            className="animate-pulse"
             style={{
               width: "100%",
               height: 46,
@@ -195,6 +196,7 @@ const ThumbReactiveCards = () => {
 
           {/* Name bar */}
           <div
+            className="animate-pulse"
             style={{
               height: 5,
               borderRadius: 2,
@@ -206,6 +208,7 @@ const ThumbReactiveCards = () => {
 
           {/* ID bar */}
           <div
+            className="animate-pulse"
             style={{
               height: 4,
               borderRadius: 2,
@@ -230,25 +233,55 @@ const ThumbBentoBlack = () => (
 );
 
 const ThumbFlipCards = () => (
-  <div className="w-full h-full flex items-center justify-center gap-2 bg-black">
-    {["gray", "gray", "gray", "gray"].map((bg, i) => (
+  <div className="w-full flex items-start justify-center gap-2 bg-black p-2">
+    {["55%", "45%", "60%", "50%"].map((titleWidth, i) => (
       <div
         key={i}
-        className="w-12 h-16 sm:w-16 sm:h-20 rounded-xl"
-        style={{
-          background: bg,
-          border: "1px solid rgba(255,255,255,0.08)",
-          position: "relative",
-          overflow: "hidden",
-        }}
+        className="relative flex-1 flex flex-col overflow-hidden rounded-[10px] min-w-0"
+        style={{ background: "#111111", border: "0.5px solid #222222" }}
       >
-        <div
-          style={{
-            position: "absolute",
-            inset: 0,
-            background: `radial-gradient(circle at 50% 40%, ${["#fff", "#fff", "#fff", "#fff"][i]}, transparent 70%)`,
-          }}
-        />
+        {/* Radar rings */}
+        <div className="relative w-full aspect-square overflow-hidden">
+          <div className="absolute inset-0 flex items-center justify-center">
+            {[0, 1, 2, 3, 4, 5].map((j) => (
+              <div
+                key={j}
+                className="absolute rounded-full border border-white/[0.07]"
+                style={{ width: `${20 + j * 18}%`, height: `${20 + j * 18}%` }}
+              />
+            ))}
+            <div
+              className="absolute rounded-full bg-white/4"
+              style={{ width: "12%", height: "12%" }}
+            />
+          </div>
+        </div>
+
+        {/* Title row skeleton */}
+        <div className="flex items-center justify-between gap-1 px-2 pt-1.5 pb-1 shrink-0">
+          <div className="flex items-center gap-1.5 min-w-0 flex-1">
+            <div
+              className="shrink-0 rounded-xs animate-pulse"
+              style={{ width: 8, height: 8, background: "#2a2a2a" }}
+            />
+            <div
+              className="h-1 rounded-sm animate-pulse"
+              style={{ width: titleWidth, background: "#2a2a2a" }}
+            />
+          </div>
+          <div
+            className="shrink-0 rounded-md animate-pulse"
+            style={{ width: 18, height: 18, background: "#2a2a2a" }}
+          />
+        </div>
+
+        {/* Subtitle skeleton */}
+        <div className="px-2 pb-2 shrink-0">
+          <div
+            className="h-1 rounded-sm animate-pulse"
+            style={{ width: "65%", background: "#2a2a2a" }}
+          />
+        </div>
       </div>
     ))}
   </div>
@@ -405,37 +438,37 @@ const ThumbHeroGreen = () => (
           <div className="w-6 h-1.5 rounded-sm bg-[#2a2a2a]" />
         </div>
         <div className="flex gap-1.5">
-          <div className="w-4 h-1.5 rounded-sm bg-[#222]" />
-          <div className="w-5 h-1.5 rounded-sm bg-[#222]" />
-          <div className="w-4 h-1.5 rounded-sm bg-[#222]" />
+          <div className="w-4 h-1.5 rounded-sm bg-[#222] animate-pulse" />
+          <div className="w-5 h-1.5 rounded-sm bg-[#222] animate-pulse" />
+          <div className="w-4 h-1.5 rounded-sm bg-[#222] animate-pulse" />
         </div>
       </div>
       <div className="w-8 h-3 rounded-full bg-[#2a2a2a]" />
     </div>
 
     <div className="flex flex-col items-center justify-center flex-1 px-4 gap-1 pt-1">
-      <div className="w-12 h-1 rounded-full bg-[#2a2a2a] mb-0.5" />
+      <div className="w-12 h-1 rounded-full bg-[#2a2a2a] mb-0.5 animate-pulse" />
 
-      <div className="w-20 h-1.5 rounded bg-[#333]" />
-      <div className="w-24 h-1.5 rounded bg-[#3a3a3a]" />
+      <div className="w-20 h-1.5 rounded bg-[#333] animate-pulse" />
+      <div className="w-24 h-1.5 rounded bg-[#3a3a3a] animate-pulse" />
 
-      <div className="w-16 h-1 rounded bg-[#222] mt-0.5" />
+      <div className="w-16 h-1 rounded bg-[#222] mt-0.5 animate-pulse" />
 
       <div className="flex items-center gap-2 mt-1">
-        <div className="w-8 h-2 rounded-full bg-[#2a2a2a]" />
-        <div className="w-7 h-1.5 rounded bg-[#1e1e1e]" />
+        <div className="w-8 h-2 rounded-full bg-[#2a2a2a] animate-pulse" />
+        <div className="w-7 h-1.5 rounded bg-[#1e1e1e] animate-pulse" />
       </div>
     </div>
 
     <div className="w-[60%] ml-[20%] mx-2 mb-1.5 bg-[#1a1a1a] border border-white/5 rounded-lg overflow-hidden shrink-0">
       <div className="flex items-center gap-1.5 px-2 py-1 border-b border-white/5">
-        <div className="w-2 h-2 rounded-xs bg-[#2a2a2a]" />
-        <div className="w-5 h-1 rounded bg-[#2a2a2a]" />
+        <div className="w-2 h-2 rounded-xs bg-[#2a2a2a] animate-pulse" />
+        <div className="w-5 h-1 rounded bg-[#2a2a2a] animate-pulse" />
         <div className="ml-auto flex gap-1">
-          <div className="w-5 h-1.5 rounded bg-[#252525]" />
-          <div className="w-4 h-1.5 rounded bg-[#222]" />
-          <div className="w-4 h-1.5 rounded bg-[#222]" />
-          <div className="w-4 h-1.5 rounded bg-[#222]" />
+          <div className="w-5 h-1.5 rounded bg-[#252525] animate-pulse" />
+          <div className="w-4 h-1.5 rounded bg-[#222] animate-pulse" />
+          <div className="w-4 h-1.5 rounded bg-[#222] animate-pulse" />
+          <div className="w-4 h-1.5 rounded bg-[#222] animate-pulse" />
         </div>
       </div>
       {/* Summary row */}
@@ -464,8 +497,8 @@ const ThumbHeroGreen = () => (
 const THUMBS = [
   ThumbHeroGreen,
   ThumbReactiveCards,
-  ThumbPill,
   ThumbFlipCards,
+  ThumbPill,
   ThumbHero,
   ThumbMenu,
   ThumbCTA,
