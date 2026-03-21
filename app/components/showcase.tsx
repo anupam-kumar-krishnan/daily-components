@@ -13,6 +13,7 @@ import Footer from "./footer";
 import Login from "./login";
 import CrystalCards from "./crystalcards";
 import Herogreen from "./herogreen";
+import Herominimal from "./herominimal";
 
 const easeOut = [0.22, 1, 0.36, 1] as const;
 
@@ -24,6 +25,14 @@ const fu = (delay = 0) => ({
 
 /* ── Components list ─────────────────────────────────────────────── */
 const COMPONENTS = [
+  {
+    id: "hero-minimal",
+    title: "Hero Section with cards",
+    description: "Hero Section with subtle load and card animation",
+    tag: "Hero",
+    tagColor: "#4ade80",
+    preview: <Herominimal />,
+  },
   {
     id: "hero-green",
     title: "Hero Section (Neon Green)",
@@ -115,6 +124,54 @@ const COMPONENTS = [
 ];
 
 /* ── Thumbnails ──────────────────────────────────────────────────── */
+const ThumbHeroMinimal = () => {
+  return (
+    <div className="w-full h-50 bg-black rounded-xl overflow-hidden flex flex-col">
+      {/* Navbar */}
+      <div className="w-[75%] pl-[28%] flex items-center justify-between px-3 py-1.5 border-b border-white/5 shrink-0">
+        <div className="flex items-center gap-3">
+          <div className="flex items-center gap-1">
+            <div className="w-2.5 h-2.5 rounded-xs bg-[#2a2a2a]" />
+            <div className="w-6 h-1.5 rounded-sm bg-[#2a2a2a]" />
+          </div>
+          <div className="flex gap-1.5">
+            <div className="w-4 h-1.5 rounded-sm bg-[#222] animate-pulse" />
+            <div className="w-5 h-1.5 rounded-sm bg-[#222] animate-pulse" />
+            <div className="w-4 h-1.5 rounded-sm bg-[#222] animate-pulse" />
+          </div>
+        </div>
+        <div className="w-8 h-3 rounded-full bg-[#2a2a2a]" />
+      </div>
+
+      <div className="flex flex-col items-center justify-center flex-1 px-4 gap-1 pt-1">
+        {/* <div className="w-12 h-1 rounded-full bg-[#2a2a2a] mb-0.5 animate-pulse" /> */}
+
+        <div className="mt-5 w-20 h-1.5 rounded bg-[#333] animate-pulse" />
+        <div className="w-24 h-1.5 rounded bg-[#3a3a3a] animate-pulse" />
+        <div className="flex items-center justify-center flex-1 gap-1.5">
+          <div className="w-7 h-10 rounded bg-[#222] -mt-2.5 animate-pulse -rotate-8" />
+          <div className="w-7 h-10 rounded bg-[#222] -mt-5 animate-pulse -rotate-3" />
+          <div className="w-7 h-10 rounded bg-[#222] -mt-5 animate-pulse rotate-3" />
+          <div className="w-7 h-10 rounded bg-[#222] -mt-2.5 animate-pulse rotate-8" />
+        </div>
+      </div>
+
+      <div className="w-[60%] ml-[20%] mx-2 mb-1.5 bg-[#1a1a1a] border border-white/5 rounded-lg overflow-hidden shrink-0">
+        <div className="flex items-center gap-1.5 px-2 py-1 border-b border-white/5">
+          <div className="w-2 h-2 rounded-xs bg-[#2a2a2a] animate-pulse" />
+          <div className="w-5 h-1 rounded bg-[#2a2a2a] animate-pulse" />
+          <div className="ml-auto flex gap-1">
+            <div className="w-5 h-4 rounded bg-[#252525] animate-pulse" />
+            <div className="w-4 h-1.5 rounded bg-[#222] animate-pulse" />
+            <div className="w-4 h-1.5 rounded bg-[#222] animate-pulse" />
+            <div className="w-4 h-1.5 rounded bg-[#222] animate-pulse" />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 const ThumbReactiveCards = () => {
   const shapes = [
     <div
@@ -571,6 +628,7 @@ const ThumbHeroGreen = () => (
 );
 
 const THUMBS = [
+  ThumbHeroMinimal,
   ThumbHeroGreen,
   ThumbReactiveCards,
   ThumbFlipCards,
@@ -621,7 +679,8 @@ export default function ComponentShowcase() {
             Unique Component Collection
           </h1>
           <p className="text-gray-500 mt-2 text-sm">
-            Click any card to preview the component
+            A growing collection of production-ready UI components.{" "}
+            <span className="text-white">Built in the open. Daily.</span>
           </p>
         </motion.div>
 
