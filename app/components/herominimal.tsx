@@ -161,7 +161,7 @@ const tools = [
   },
 ];
 
-function DotGrid({ cols, rows }) {
+function DotGrid({ cols, rows }: DotGridProps) {
   return (
     <div
       style={{
@@ -185,7 +185,7 @@ function DotGrid({ cols, rows }) {
   );
 }
 
-function ToolCard({ tool, index, isMobile }) {
+function ToolCard({ tool, index, isMobile }: ToolCardProps) {
   const [hovered, setHovered] = useState(false);
 
   return (
