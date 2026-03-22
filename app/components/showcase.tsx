@@ -14,6 +14,7 @@ import Login from "./login";
 import CrystalCards from "./crystalcards";
 import Herogreen from "./herogreen";
 import Herominimal from "./herominimal";
+import Envelope from "./envelope";
 
 const easeOut = [0.22, 1, 0.36, 1] as const;
 
@@ -25,6 +26,14 @@ const fu = (delay = 0) => ({
 
 /* ── Components list ─────────────────────────────────────────────── */
 const COMPONENTS = [
+  {
+    id: "envelope-card-pops",
+    title: "Card Pops out from envelope",
+    description: "An envelope animation where a card magically pops out",
+    tag: "Animation",
+    tagColor: "#4ade80",
+    preview: <Envelope />,
+  },
   {
     id: "hero-minimal",
     title: "Hero Section with cards",
@@ -124,6 +133,64 @@ const COMPONENTS = [
 ];
 
 /* ── Thumbnails ──────────────────────────────────────────────────── */
+const ThumbEnvelope = () => {
+  return (
+    <div className="w-full h-full bg-black rounded-xl overflow-hidden flex items-center justify-between px-4 py-3 gap-3">
+      {/* Left: Nav bar skeleton */}
+      {/* <div className="flex items-center gap-2 shrink-0">
+        <div className="h-3 w-14 rounded-full bg-gray-800 animate-pulse" />
+        <div className="h-2 w-8 rounded-full bg-gray-800 animate-pulse hidden sm:block" />
+        <div className="h-2 w-8 rounded-full bg-gray-800 animate-pulse hidden sm:block" />
+      </div> */}
+
+      {/* Center: three fanned envelope + card shapes */}
+      <div className="flex items-center justify-center flex-1 relative h-full mb-20">
+        {/* Left envelope (rotated left) */}
+        <div
+          className="absolute flex flex-col items-center"
+          style={{
+            left: "calc(50% - 48px)",
+            bottom: 4,
+            transform: "rotate(-15deg)",
+            transformOrigin: "bottom center",
+          }}
+        >
+          <div className="w-8 h-5 rounded-sm bg-gray-700 animate-pulse -mb-0.05 z-10" />
+          <div className="w-9 h-5 rounded-sm bg-gray-800 animate-pulse" />
+        </div>
+
+        {/* Center envelope (upright, prominent) */}
+        <div
+          className="absolute flex flex-col items-center z-20"
+          style={{ left: "50%", transform: "translateX(-50%)", bottom: 4 }}
+        >
+          <div className="w-10 h-7 rounded-md bg-gray-500 animate-pulse -mb-0.05 z-10" />
+          <div className="w-11 h-6 rounded-sm bg-gray-700 animate-pulse" />
+        </div>
+
+        {/* Right envelope (rotated right) */}
+        <div
+          className="absolute flex flex-col items-center"
+          style={{
+            left: "calc(50% + 14px)",
+            bottom: 4,
+            transform: "rotate(15deg)",
+            transformOrigin: "bottom center",
+          }}
+        >
+          <div className="w-8 h-5 rounded-sm bg-gray-700 animate-pulse -mb-0.05 z-10" />
+          <div className="w-9 h-5 rounded-sm bg-gray-800 animate-pulse" />
+        </div>
+      </div>
+
+      {/* Right: Replay button skeleton */}
+      {/* <div className="shrink-0">
+        <div className="h-6 w-16 rounded-full bg-gray-800 animate-pulse border border-gray-700" />
+      </div> */}
+    </div>
+  );
+};
+
 const ThumbHeroMinimal = () => {
   return (
     <div className="w-full h-50 bg-black rounded-xl overflow-hidden flex flex-col">
@@ -628,6 +695,7 @@ const ThumbHeroGreen = () => (
 );
 
 const THUMBS = [
+  ThumbEnvelope,
   ThumbHeroMinimal,
   ThumbHeroGreen,
   ThumbReactiveCards,
