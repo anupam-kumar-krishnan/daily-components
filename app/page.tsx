@@ -1,6 +1,7 @@
 import Showcase from "./components/showcase";
 import Herominimal from "./components/herominimal";
 import Envelope from "./components/envelope";
+import HeroBlue from "./components/heroblue";
 
 export default function Home() {
   return (
@@ -8,6 +9,7 @@ export default function Home() {
       <Showcase />
       {/* <Herominimal /> */}
       {/* <Envelope /> */}
+      {/* <HeroBlue /> */}
     </div>
   );
 }
