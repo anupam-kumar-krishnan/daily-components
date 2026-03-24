@@ -16,6 +16,7 @@ import Herogreen from "./herogreen";
 import Herominimal from "./herominimal";
 import Envelope from "./envelope";
 import HeroBlue from "./heroblue";
+import Heropurple from "./heropurple";
 
 const easeOut = [0.22, 1, 0.36, 1] as const;
 
@@ -28,9 +29,17 @@ const fu = (delay = 0) => ({
 /* ── Components list ─────────────────────────────────────────────── */
 const COMPONENTS = [
   {
+    id: "hero-purple",
+    title: "Hero Section wth Purple Theme",
+    description: "An Purple dark themed Hero Section",
+    tag: "Hero",
+    tagColor: "#4ade80",
+    preview: <Heropurple />,
+  },
+  {
     id: "hero-blue",
     title: "Hero Section wth Blue Theme",
-    description: "An envelope animation where a card magically pops out",
+    description: "A Blue gradient themed Hero Section",
     tag: "Hero",
     tagColor: "#4ade80",
     preview: <HeroBlue />,
@@ -142,6 +151,72 @@ const COMPONENTS = [
 ];
 
 /* ── Thumbnails ──────────────────────────────────────────────────── */
+const ThumbHeroPurple = () => (
+  <div className="w-full h-50 bg-black rounded-xl overflow-hidden flex flex-col">
+    {/* Navbar */}
+    <div className="w-[75%] pl-[28%] flex items-center justify-between px-3 py-1.5 border-b border-white/5 shrink-0">
+      <div className="flex items-center gap-3">
+        <div className="flex items-center gap-1">
+          <div className="w-2.5 h-2.5 rounded-xs bg-[#2a2a2a]" />
+          <div className="w-6 h-1.5 rounded-sm bg-[#2a2a2a]" />
+        </div>
+        <div className="flex gap-1.5">
+          <div className="w-4 h-1.5 rounded-sm bg-[#222] animate-pulse" />
+          <div className="w-5 h-1.5 rounded-sm bg-[#222] animate-pulse" />
+          <div className="w-4 h-1.5 rounded-sm bg-[#222] animate-pulse" />
+        </div>
+      </div>
+      <div className="w-8 h-3 rounded-full bg-[#2a2a2a]" />
+    </div>
+
+    <div className="flex flex-col items-center justify-center flex-1 px-4 gap-1 pt-1">
+      <div className="w-12 h-1 rounded-full bg-[#2a2a2a] mb-0.5 animate-pulse" />
+
+      <div className="w-20 h-1.5 rounded bg-[#333] animate-pulse" />
+      <div className="w-24 h-1.5 rounded bg-[#3a3a3a] animate-pulse" />
+
+      <div className="w-16 h-1 rounded bg-[#222] mt-0.5 animate-pulse" />
+
+      <div className="flex items-center gap-2 mt-1">
+        <div className="w-8 h-2 rounded-full bg-[#2a2a2a] animate-pulse" />
+        <div className="w-7 h-1.5 rounded bg-[#1e1e1e] animate-pulse" />
+      </div>
+    </div>
+
+    <div className="w-[60%] ml-[20%] mx-2 mb-1.5 bg-[#1a1a1a] border border-white/5 rounded-lg overflow-hidden shrink-0">
+      <div className="flex items-center gap-1.5 px-2 py-1 border-b border-white/5">
+        <div className="w-2 h-2 rounded-xs bg-[#2a2a2a] animate-pulse" />
+        <div className="w-5 h-1 rounded bg-[#2a2a2a] animate-pulse" />
+        <div className="ml-auto flex gap-1">
+          <div className="w-5 h-1.5 rounded bg-[#252525] animate-pulse" />
+          <div className="w-4 h-1.5 rounded bg-[#222] animate-pulse" />
+          <div className="w-4 h-1.5 rounded bg-[#222] animate-pulse" />
+          <div className="w-4 h-1.5 rounded bg-[#222] animate-pulse" />
+        </div>
+      </div>
+      {/* Summary row */}
+      <div className="flex items-center justify-between px-2 py-1.5 relative">
+        <div className="flex flex-col gap-0.5">
+          <div className="w-8 h-1 rounded bg-[#222]" />
+          <div className="w-10 h-1.5 rounded bg-[#333]" />
+        </div>
+        {/* Play circle */}
+        <div className="absolute left-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-[#2a2a2a]" />
+        <div className="flex flex-col gap-0.5 items-end">
+          <div className="w-8 h-1 rounded bg-[#222]" />
+          <div className="w-10 h-1.5 rounded bg-[#333]" />
+        </div>
+      </div>
+      {/* Stats row */}
+      <div className="grid grid-cols-4 gap-1 px-2 pb-1.5">
+        {[...Array(4)].map((_, i) => (
+          <div key={i} className="h-3 rounded bg-[#222]" />
+        ))}
+      </div>
+    </div>
+  </div>
+);
+
 const ThumbHeroBlue = () => {
   return (
     <div className="w-full h-50 bg-black rounded-xl overflow-hidden flex flex-col">
@@ -753,6 +828,7 @@ const ThumbHeroGreen = () => (
 );
 
 const THUMBS = [
+  ThumbHeroPurple,
   ThumbHeroBlue,
   ThumbEnvelope,
   ThumbHeroMinimal,
