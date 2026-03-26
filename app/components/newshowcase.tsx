@@ -639,7 +639,7 @@ export default function App() {
                   letterSpacing: "0.06em",
                 }}
               >
-                OPEN SOURCE
+                COMPONENTS
               </span>
               <span
                 className="text-xs text-neutral-600"
