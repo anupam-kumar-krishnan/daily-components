@@ -111,15 +111,16 @@ const Badge = ({
 // ── Dashboard mock ──────────────────────────────────────────────────────────
 const Dashboard = () => (
   <motion.div
-    className="mx-auto rounded-2xl overflow-hidden"
+    className="mx-auto rounded-2xl overflow-hidden scale-110"
     style={{
-      maxWidth: 820,
+      maxWidth: 950,
       border: "5px solid #fdba74",
       boxShadow: "0 16px 48px rgba(0,0,0,0.09)",
     }}
     initial={{ opacity: 0, y: 48 }}
     animate={{ opacity: 1, y: 0 }}
     transition={{ delay: 0.65, duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+    whileHover={{ rotateX: 5, rotateY: -5 }}
   >
     {/* Chrome bar */}
     <div className="bg-white border-b border-gray-100 px-4 py-2.5 flex items-center justify-between">
@@ -612,12 +613,24 @@ export default function FlowenLanding() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4 }}
             >
-              <div className="inline-flex items-center gap-2 border border-b border-l border-r border-gray-200  bg-white rounded-full px-3 py-1.5 text-[13px]">
+              <motion.div
+                className="inline-flex items-center gap-2 border border-b border-l border-r border-gray-200  bg-white rounded-full px-3 py-1.5 text-[13px]"
+                animate={{ y: [0, -10, 0] }}
+                transition={{ repeat: Infinity, duration: 3, delay: 0.5 }}
+              >
                 <span className="bg-orange-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-full">
                   New
                 </span>
                 <span className="text-gray-600 font-medium">
-                  Trusted by 999+ Growing B2B Teams
+                  Trusted by{" "}
+                  <motion.span
+                    initial={{ scale: 0.8, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    transition={{ type: "spring", stiffness: 120 }}
+                  >
+                    999+
+                  </motion.span>{" "}
+                  Growing B2B Teams
                 </span>
                 <motion.span
                   className="text-gray-400 font-semibold text-[14px] leading-none"
@@ -630,7 +643,7 @@ export default function FlowenLanding() {
                 >
                   ›
                 </motion.span>
-              </div>
+              </motion.div>
             </motion.div>
 
             {/* Floating badges — corners, well clear of CTAs */}
@@ -690,7 +703,13 @@ export default function FlowenLanding() {
                 }}
               >
                 <span className="text-gray-900">Pipeline Into </span>
-                <span className="text-orange-500">Revenue</span>
+                <motion.span
+                  className="text-orange-500"
+                  initial={{ backgroundPosition: "200%" }}
+                  animate={{ backgroundPosition: "0%" }}
+                >
+                  Revenue
+                </motion.span>
               </motion.h1>
             </div>
 
@@ -714,7 +733,7 @@ export default function FlowenLanding() {
               transition={{ delay: 0.52, duration: 0.5 }}
             >
               <motion.button
-                className="text-[15px] font-semibold text-white bg-orange-500 px-8 py-3.5 rounded-xl shadow-md shadow-orange-200"
+                className="text-[15px] font-semibold text-white bg-orange-500 px-8 py-3.5 rounded-xl active:scale-95 transition-all shadow-lg shadow-orange-300 hover:shadow-orange-400"
                 whileHover={{ backgroundColor: "#ea6c00" }}
                 whileTap={{ scale: 0.97 }}
               >
