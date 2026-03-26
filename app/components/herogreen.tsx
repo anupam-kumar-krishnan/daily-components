@@ -5,7 +5,7 @@ import { useRef, useEffect, useState } from "react";
 const NAV_LINKS = ["Product", "Customers", "About us"];
 const STATS = [
   { label: "New Contacts", value: "423" },
-  { label: "Payments", value: "₹5,80,900" },
+  { label: "Payments", value: "$48,976" },
   { label: "Paid Claims", value: "156" },
   { label: "Listings Covered", value: "87" },
 ];
@@ -67,20 +67,21 @@ function PortalBeam() {
         justifyContent: "center",
         pointerEvents: "none",
         overflow: "hidden",
+        mixBlendMode: "screen",
       }}
     >
-      {/* Wide soft glow */}
+      {/* Wide soft glow — screen blend means it only adds brightness, never darkens */}
       <motion.div
         style={{
           position: "absolute",
           top: 0,
           left: "50%",
           transform: "translateX(-50%)",
-          width: 700,
-          height: "80%",
+          width: 800,
+          height: "70%",
           background:
-            "radial-gradient(ellipse 60% 100% at 50% 0%, rgba(100,255,0,0.22) 0%, rgba(60,180,0,0.08) 45%, transparent 80%)",
-          filter: "blur(32px)",
+            "radial-gradient(ellipse 55% 100% at 50% 0%, rgba(120,255,0,0.45) 0%, rgba(80,200,0,0.18) 50%, transparent 80%)",
+          filter: "blur(40px)",
         }}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -90,17 +91,17 @@ function PortalBeam() {
       <motion.div
         style={{
           position: "absolute",
-          top: -20,
+          top: -30,
           left: "50%",
           transform: "translateX(-50%)",
-          width: 180,
-          height: 180,
+          width: 220,
+          height: 220,
           borderRadius: "50%",
           background:
-            "radial-gradient(circle, rgba(150,255,0,0.6) 0%, rgba(100,220,0,0.2) 40%, transparent 70%)",
-          filter: "blur(28px)",
+            "radial-gradient(circle, rgba(180,255,60,0.9) 0%, rgba(120,240,0,0.4) 40%, transparent 70%)",
+          filter: "blur(22px)",
         }}
-        animate={{ opacity: [0.4, 1, 0.4] }}
+        animate={{ opacity: [0.6, 1, 0.6] }}
         transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }}
       />
     </div>
@@ -128,7 +129,7 @@ function DashboardCard() {
           borderRadius: 24,
           pointerEvents: "none",
           background:
-            "radial-gradient(ellipse 80% 60% at 50% 100%, rgba(80,220,0,0.18) 0%, transparent 80%)",
+            "radial-gradient(ellipse 80% 60% at 50% 100%, rgba(80,220,0,0.28) 0%, transparent 80%)",
           filter: "blur(24px)",
         }}
       />
@@ -138,10 +139,10 @@ function DashboardCard() {
           position: "relative",
           borderRadius: 20,
           overflow: "hidden",
-          border: "1px solid #222",
+          border: "1px solid #2a3520",
           background: "linear-gradient(160deg,#141a10 0%,#0d120a 100%)",
           boxShadow:
-            "0 28px 72px rgba(0,0,0,0.7), inset 0 1px 0 rgba(120,255,0,0.10)",
+            "0 28px 72px rgba(0,0,0,0.7), inset 0 1px 0 rgba(120,255,0,0.15)",
         }}
       >
         {/* Top bar */}
@@ -151,7 +152,7 @@ function DashboardCard() {
             alignItems: "center",
             gap: 12,
             padding: "10px 18px",
-            borderBottom: "1px solid #1e1e1e",
+            borderBottom: "1px solid #1e2a18",
             flexWrap: "wrap",
           }}
         >
@@ -172,10 +173,10 @@ function DashboardCard() {
             >
               O
             </div>
-            <span style={{ fontSize: 11, color: "#666", fontWeight: 600 }}>
+            <span style={{ fontSize: 11, color: "#888", fontWeight: 600 }}>
               Orbitly
             </span>
-            <span style={{ fontSize: 10, color: "#333", marginLeft: 4 }}>
+            <span style={{ fontSize: 10, color: "#444", marginLeft: 4 }}>
               Project Offer Easy Cl
             </span>
           </div>
@@ -203,8 +204,8 @@ function DashboardCard() {
                   padding: "3px 8px",
                   borderRadius: 4,
                   cursor: "pointer",
-                  background: i === 0 ? "rgba(127,255,0,0.15)" : "transparent",
-                  color: i === 0 ? "#7fff00" : "#444",
+                  background: i === 0 ? "rgba(127,255,0,0.18)" : "transparent",
+                  color: i === 0 ? "#7fff00" : "#555",
                 }}
               >
                 {item}
@@ -229,7 +230,7 @@ function DashboardCard() {
               <p
                 style={{
                   fontSize: 10,
-                  color: "#555",
+                  color: "#666",
                   marginBottom: "3px",
                   marginLeft: "-100px",
                 }}
@@ -249,10 +250,10 @@ function DashboardCard() {
             </div>
             <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
               <div style={{ textAlign: "right" }}>
-                <p style={{ fontSize: 10, color: "#555", margin: 0 }}>
+                <p style={{ fontSize: 10, color: "#666", margin: 0 }}>
                   Anupam Kumar
                 </p>
-                <p style={{ fontSize: 10, color: "#444", margin: 0 }}>
+                <p style={{ fontSize: 10, color: "#555", margin: 0 }}>
                   ID: 4027682
                 </p>
               </div>
@@ -262,7 +263,7 @@ function DashboardCard() {
                   height: 28,
                   borderRadius: "50%",
                   background:
-                    "linear-gradient(135deg,rgba(127,255,0,0.6),rgba(50,140,0,0.6))",
+                    "linear-gradient(135deg,rgba(127,255,0,0.7),rgba(50,140,0,0.7))",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
@@ -294,7 +295,7 @@ function DashboardCard() {
           <p
             style={{
               fontSize: 11,
-              color: "#888",
+              color: "#aaa",
               fontWeight: 600,
               marginBottom: 10,
             }}
@@ -318,7 +319,7 @@ function DashboardCard() {
               <p
                 style={{
                   fontSize: 10,
-                  color: "#555",
+                  color: "#666",
                   margin: "0 0 4px",
                   display: "flex",
                   alignItems: "center",
@@ -326,11 +327,10 @@ function DashboardCard() {
                 }}
               >
                 <svg
-                  className="w-3 h-3 text-gray-800 dark:text-white"
                   aria-hidden="true"
                   xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
+                  width="12"
+                  height="12"
                   fill="currentColor"
                   viewBox="0 0 24 24"
                 >
@@ -367,7 +367,7 @@ function DashboardCard() {
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-                boxShadow: "0 0 20px rgba(127,255,0,0.4)",
+                boxShadow: "0 0 24px rgba(127,255,0,0.55)",
                 cursor: "pointer",
                 fontSize: 14,
                 color: "#000",
@@ -375,11 +375,12 @@ function DashboardCard() {
                 left: "50%",
                 transform: "translateX(-50%)",
               }}
+              className="animate-pulse"
             >
               ▶
             </div>
             <div style={{ textAlign: "right" }}>
-              <p style={{ fontSize: 10, color: "#555", margin: "0 0 4px" }}>
+              <p style={{ fontSize: 10, color: "#666", margin: "0 0 4px" }}>
                 Average Offer
               </p>
               <motion.p
@@ -420,7 +421,7 @@ function DashboardCard() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 1.5 + i * 0.1 }}
               >
-                <p style={{ fontSize: 9, color: "#555", margin: "0 0 4px" }}>
+                <p style={{ fontSize: 9, color: "#666", margin: "0 0 4px" }}>
                   {s.label}
                 </p>
                 <p
@@ -458,14 +459,14 @@ export default function HeroSection() {
         overflowY: "hidden",
         display: "flex",
         flexDirection: "column",
-        background:
-          "radial-gradient(ellipse 120% 80% at 50% -10%, #1a2e0a 0%, #080b06 45%, transparent 100%) #060805",
+        background: "#060805",
+        backgroundImage:
+          "radial-gradient(ellipse 100% 60% at 50% 0%, #1e3a0a 0%, #0a1007 35%, transparent 70%)",
         fontFamily: "'DM Sans', 'Outfit', sans-serif",
       }}
     >
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;900&family=Instrument+Serif:ital@0;1&display=swap');
-        html, body { overflow-y: hidden; margin: 0; padding: 0; }
         .orbitly-headline { font-family:'Instrument Serif',serif; line-height:1.08; letter-spacing:-0.02em; }
         .orbitly-nav-link { color:#888; font-size:13px; font-weight:500; text-decoration:none; transition:color 0.2s; }
         .orbitly-nav-link:hover { color:#ddd; }
@@ -496,10 +497,6 @@ export default function HeroSection() {
           animation: spin-border 2.4s linear infinite;
           pointer-events: none;
           z-index: -1;
-        }
-
-        *,html,body{
-        backgroung-color: #070b07;
         }
       `}</style>
 
@@ -580,23 +577,17 @@ export default function HeroSection() {
       <motion.div
         style={{
           position: "relative",
-          zIndex: 10,
+          zIndex: 30,
           flex: 1,
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
           textAlign: "center",
           padding: "32px 24px 0",
-          opacity: heroOpacity,
         }}
       >
         {/* Badge */}
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3, duration: 0.5 }}
-          style={{ marginBottom: 24 }}
-        >
+        <motion.div style={{ marginBottom: 24 }}>
           <span
             className="running-border"
             style={{
@@ -623,9 +614,6 @@ export default function HeroSection() {
             fontSize: "clamp(2.5rem,6vw,4.2rem)",
             margin: "0 0 20px",
           }}
-          initial={{ opacity: 0, y: 22 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
         >
           One platform to
           <br />
@@ -637,13 +625,10 @@ export default function HeroSection() {
           style={{
             fontSize: 15,
             lineHeight: 1.7,
-            color: "#888",
+            color: "#999",
             maxWidth: 360,
             margin: "0 0 32px",
           }}
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.6, duration: 0.6 }}
         >
           Consolidate your projects, clients and team into one integrated,
           easy-to-use platform.
@@ -657,9 +642,6 @@ export default function HeroSection() {
             gap: 20,
             marginBottom: 52,
           }}
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.8, duration: 0.5 }}
         >
           <motion.button
             style={{
@@ -674,7 +656,7 @@ export default function HeroSection() {
             }}
             whileHover={{
               scale: 1.04,
-              boxShadow: "0 0 28px rgba(127,255,0,0.45)",
+              boxShadow: "0 0 28px rgba(127,255,0,0.55)",
             }}
             whileTap={{ scale: 0.96 }}
           >
@@ -685,13 +667,12 @@ export default function HeroSection() {
             style={{
               fontSize: 13,
               fontWeight: 500,
-              color: "#888",
+              color: "#999",
               textDecoration: "none",
               display: "flex",
               alignItems: "center",
               gap: 4,
             }}
-            whileHover={{ color: "#ccc" }}
           >
             Book a demo
             <motion.span

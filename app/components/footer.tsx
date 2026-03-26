@@ -252,7 +252,7 @@ export default function Footer() {
         {/* Bottom bar */}
         <motion.div
           variants={fadeUpVariants}
-          className="flex flex-col items-start gap-4 py-6 sm:flex-row sm:items-center sm:justify-between"
+          className="flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between"
         >
           <motion.p
             className="text-xs text-neutral-400"
