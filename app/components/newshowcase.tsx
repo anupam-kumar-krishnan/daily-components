@@ -645,7 +645,7 @@ export default function App() {
                 className="text-xs text-neutral-600"
                 style={{ fontFamily: "'DM Mono', monospace" }}
               >
-                v2.0 — 2026
+                2026
               </span>
             </motion.div>
             <motion.h1

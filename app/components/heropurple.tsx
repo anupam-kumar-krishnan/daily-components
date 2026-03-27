@@ -1482,14 +1482,13 @@ export default function FixoraLanding() {
               textAlign: "center",
               color: C.muted,
               fontSize: "clamp(13px,1.5vw,15px)",
-              maxWidth: 600,
+              maxWidth: 650,
               lineHeight: 1.75,
               fontFamily: font,
             }}
           >
             Streamline, Optimize, and Scale Your Fleet Management with Our
-            Powerful SaaS Solution. Streamline, Optimize, and Scale Your Fleet
-            Management.
+            Powerful SaaS Solution.
           </motion.p>
 
           {/* CTA */}

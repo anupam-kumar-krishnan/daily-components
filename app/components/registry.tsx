@@ -15,19 +15,7 @@ import BentoGrid from "./bentogrid";
 import BentoGridBlack from "./bentoblack";
 import Footer from "./footer";
 import Feature from "./login";
-// ─────────────────────────────────────────────────────────────────────────────
-//  COMPONENT REGISTRY
-//  To add a new component:
-//  1. Import it below
-//  2. Add an entry to the REGISTRY array
-// ─────────────────────────────────────────────────────────────────────────────
-
-// Example imports — replace with your actual components:
-// import HeroOrange        from "./components/HeroOrange";
-// import HeroBlueGradient  from "./components/HeroBlueGradient";
-// import CardEnvelope      from "./components/CardEnvelope";
-
-// ─── Placeholder components (delete once you import real ones) ───────────────
+import HeroLocqube from "./herosection";
 
 const Placeholder =
   (label: string, accent: string): ComponentType =>
@@ -199,7 +187,7 @@ export const REGISTRY: RegistryEntry[] = [
     desc: "Hero section with subtle hover and border animation",
     tag: "layout",
     thumb: "lines",
-    component: HeroPurple,
+    component: HeroLocqube,
   },
   {
     id: 12,
