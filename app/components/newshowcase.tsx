@@ -52,27 +52,63 @@ const ThumbLines = () => (
   </div>
 );
 
-const ThumbEnvelope = () => (
-  <svg
-    width="70"
-    height="70"
-    viewBox="0 0 70 70"
-    fill="none"
-    className="opacity-25"
-  >
-    <rect
-      x="8"
-      y="22"
-      width="54"
-      height="36"
-      rx="5"
-      stroke="#888"
-      strokeWidth="2"
-    />
-    <path d="M8 28L35 46l27-18" stroke="#888" strokeWidth="2" />
-    <rect x="24" y="8" width="22" height="28" rx="4" fill="#555" />
-  </svg>
-);
+const ThumbEnvelope = () => {
+  return (
+    <div className="w-full h-full bg-[#0c0c0d] rounded-xl overflow-hidden flex items-center justify-between px-4 py-3 gap-3">
+      {/* Left: Nav bar skeleton */}
+      {/* <div className="flex items-center gap-2 shrink-0">
+        <div className="h-3 w-14 rounded-full bg-gray-800 animate-pulse" />
+        <div className="h-2 w-8 rounded-full bg-gray-800 animate-pulse hidden sm:block" />
+        <div className="h-2 w-8 rounded-full bg-gray-800 animate-pulse hidden sm:block" />
+      </div> */}
+
+      {/* Center: three fanned envelope + card shapes */}
+      <div className="flex items-center justify-center flex-1 relative h-full mb-20">
+        {/* Left envelope (rotated left) */}
+        <div
+          className="absolute flex flex-col items-center"
+          style={{
+            left: "calc(50% - 48px)",
+            bottom: 4,
+            transform: "rotate(-15deg)",
+            transformOrigin: "bottom center",
+          }}
+        >
+          <div className="w-8 h-5 rounded-sm bg-gray-700 animate-pulse -mb-0.05 z-10" />
+          <div className="w-9 h-5 rounded-sm bg-gray-800 animate-pulse" />
+        </div>
+
+        {/* Center envelope (upright, prominent) */}
+        <div
+          className="absolute flex flex-col items-center z-20"
+          style={{ left: "50%", transform: "translateX(-50%)", bottom: 4 }}
+        >
+          <div className="w-10 h-7 rounded-md bg-gray-500 animate-pulse -mb-0.05 z-10" />
+          <div className="w-11 h-6 rounded-sm bg-gray-700 animate-pulse" />
+        </div>
+
+        {/* Right envelope (rotated right) */}
+        <div
+          className="absolute flex flex-col items-center"
+          style={{
+            left: "calc(50% + 14px)",
+            bottom: 4,
+            transform: "rotate(15deg)",
+            transformOrigin: "bottom center",
+          }}
+        >
+          <div className="w-8 h-5 rounded-sm bg-gray-700 animate-pulse -mb-0.05 z-10" />
+          <div className="w-9 h-5 rounded-sm bg-gray-800 animate-pulse" />
+        </div>
+      </div>
+
+      {/* Right: Replay button skeleton */}
+      {/* <div className="shrink-0">
+        <div className="h-6 w-16 rounded-full bg-gray-800 animate-pulse border border-gray-700" />
+      </div> */}
+    </div>
+  );
+};
 
 const ThumbArc = () => (
   <div className="flex gap-3 items-end opacity-30">
@@ -230,23 +266,72 @@ const ThumbBento = () => (
 );
 
 const ThumbFooter = () => (
-  <div className="w-4/5 opacity-30">
-    <div className="flex gap-2 mb-2">
-      {[0, 1, 2].map((i) => (
-        <div key={i} className="h-2 flex-1 bg-neutral-600 rounded" />
-      ))}
+  <div className="w-full h-full flex items-center justify-center bg-[#0d0c0c] pr-10">
+    <div className="w-full max-w-65 flex flex-col gap-3 px-4">
+      {/* Top section: brand + nav columns */}
+      <div className="flex items-start justify-between gap-4">
+        {/* Brand / logo block */}
+        <div className="flex flex-col gap-1.5">
+          <div className="h-3 w-16 bg-[#1c1d1a] rounded-sm animate-pulse" />
+          <div className="h-1.5 w-24 bg-[#1c1d1a] rounded-sm animate-pulse" />
+          <div className="h-1.5 w-20 bg-[#1c1d1a] rounded-sm animate-pulse" />
+          <div className="h-1.5 w-16 bg-[#1c1d1a] rounded-sm animate-pulse" />
+          {/* Social icons row */}
+          <div className="flex gap-1 mt-1">
+            {Array.from({ length: 4 }).map((_, i) => (
+              <div
+                key={i}
+                className="h-2 w-2 bg-[#1c1d1a] rounded-full animate-pulse"
+              />
+            ))}
+          </div>
+        </div>
+
+        {/* Nav columns */}
+        <div className="flex gap-3">
+          {Array.from({ length: 3 }).map((_, col) => (
+            <div key={col} className="flex flex-col gap-1.5">
+              <div className="h-1.5 w-10 bg-[#1c1d1a] rounded-sm" />
+              {Array.from({ length: 4 }).map((_, row) => (
+                <div
+                  key={row}
+                  className="h-1.5 w-10 bg-[#1c1d1a] rounded-sm animate-pulse"
+                />
+              ))}
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Divider */}
+      <div className="h-px w-full bg-white/10" />
+
+      {/* Bottom bar */}
+      <div className="flex items-center justify-between">
+        <div className="h-1.5 w-20 bg-[#1c1d1a] rounded-sm animate-pulse" />
+        <div className="flex gap-2">
+          {Array.from({ length: 3 }).map((_, i) => (
+            <div
+              key={i}
+              className="h-1.5 w-8 bg-[#1c1d1a] rounded-sm animate-pulse"
+            />
+          ))}
+        </div>
+      </div>
     </div>
-    <div className="h-px bg-neutral-700 mb-2" />
-    <div className="h-1.5 w-3/5 bg-neutral-700 rounded" />
   </div>
 );
 
 const ThumbFeature = () => (
-  <div className="w-4/5 opacity-30">
-    <div className="h-2.5 bg-neutral-500 rounded w-3/4 mb-2" />
+  <div className="w-full h-full flex flex-col items-center justify-center bg-[#0c0c0d]">
+    <div className="w-16 h-2 rounded-full bg-[#232223] mb-2 animate-pulse" />
+    <div className="w-24 h-2 rounded-full bg-[#2d2c2d] mb-5 animate-pulse" />
     <div className="grid grid-cols-3 gap-1.5">
-      {[0, 1, 2, 3, 4, 5].map((i) => (
-        <div key={i} className="h-7 bg-neutral-700 rounded" />
+      {Array.from({ length: 6 }).map((_, i) => (
+        <div
+          key={i}
+          className="h-7 w-7 sm:w-16 bg-[#1d1d1c] rounded-md animate-pulse"
+        />
       ))}
     </div>
   </div>
@@ -464,8 +549,8 @@ const Marquee = () => (
   <div
     className="overflow-hidden py-3"
     style={{
-      borderBottom: "1px solid #1a1a1a",
-      borderTop: "1px solid #1a1a1a",
+      borderBottom: "1px solid #A3E635",
+      borderTop: "1px solid #A3E635",
     }}
   >
     <motion.div
@@ -476,13 +561,13 @@ const Marquee = () => (
       {[...MARQUEE_ITEMS, ...MARQUEE_ITEMS].map((item, i) => (
         <span
           key={i}
-          className="text-xs text-neutral-600 shrink-0"
+          className="text-xs text-lime-400 shrink-0"
           style={{
             fontFamily: "'DM Mono', monospace",
             letterSpacing: "0.08em",
           }}
         >
-          {item} <span className="text-neutral-800 mx-2">·</span>
+          {item} <span className="text-lime-500 mx-2">·</span>
         </span>
       ))}
     </motion.div>

@@ -16,6 +16,7 @@ import BentoGridBlack from "./bentoblack";
 import Footer from "./footer";
 import Feature from "./login";
 import HeroLocqube from "./herosection";
+import HeroSky from "./herosky";
 
 const Placeholder =
   (label: string, accent: string): ComponentType =>
@@ -242,5 +243,14 @@ export const REGISTRY: RegistryEntry[] = [
     tag: "feature",
     thumb: "feature",
     component: Feature,
+  },
+  {
+    id: 18,
+    title: "Hero Section",
+    subtitle: "Sky Theme",
+    desc: "Hero Section in Sky Blue Theme with animation",
+    tag: "hero",
+    thumb: "lines",
+    component: HeroSky,
   },
 ];
