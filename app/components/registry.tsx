@@ -17,6 +17,7 @@ import Footer from "./footer";
 import Feature from "./login";
 import HeroLocqube from "./herosection";
 import HeroSky from "./herosky";
+import HeroSecturityGreen from "./herosecuritygreen";
 
 const Placeholder =
   (label: string, accent: string): ComponentType =>
@@ -186,7 +187,7 @@ export const REGISTRY: RegistryEntry[] = [
     title: "Hero Section",
     subtitle: "Purple Theme",
     desc: "Hero section with subtle hover and border animation",
-    tag: "layout",
+    tag: "hero",
     thumb: "lines",
     component: HeroLocqube,
   },
@@ -252,5 +253,14 @@ export const REGISTRY: RegistryEntry[] = [
     tag: "hero",
     thumb: "lines",
     component: HeroSky,
+  },
+  {
+    id: 19,
+    title: "Hero Section",
+    subtitle: "Green Theme",
+    desc: "Hero Section in Green Theme with moving lines and circle",
+    tag: "hero",
+    thumb: "lines",
+    component: HeroSecturityGreen,
   },
 ];

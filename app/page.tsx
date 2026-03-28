@@ -1,6 +1,8 @@
 import Showcase from "./components/showcase";
 import Newshowcase from "./components/newshowcase";
 import Herosky from "./components/herosky";
+import Scroll from "./components/scroll";
+import HeroSecturityGreen from "./components/herosecuritygreen";
 
 export default function Home() {
   return (
@@ -8,6 +10,8 @@ export default function Home() {
       {/* <Showcase /> */}
       <Newshowcase />
       {/* <Herosky /> */}
+      {/* <Scroll /> */}
+      {/* <HeroSecturityGreen /> */}
     </div>
   );
 }
