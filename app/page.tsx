@@ -3,6 +3,7 @@ import Newshowcase from "./components/newshowcase";
 import Herosky from "./components/herosky";
 import Scroll from "./components/scroll";
 import HeroSecturityGreen from "./components/herosecuritygreen";
+import HeroOrchid from "./components/heroorchid";
 
 export default function Home() {
   return (
@@ -12,6 +13,7 @@ export default function Home() {
       {/* <Herosky /> */}
       {/* <Scroll /> */}
       {/* <HeroSecturityGreen /> */}
+      {/* <HeroOrchid /> */}
     </div>
   );
 }
