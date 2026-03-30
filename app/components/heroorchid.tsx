@@ -89,7 +89,7 @@ export default function OrchidsLanding() {
   const [idea, setIdea] = useState("");
 
   return (
-    <div className="w-full relative min-h-screen bg-[#0d0d0f] text-white overflow-x-hidden">
+    <div className="w-full relative min-h-screen bg-[#0d0d0f] text-white overflow-x-hidden overflow-y-hidden">
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=Playfair+Display:ital,wght@1,400;1,500&display=swap');
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -415,7 +415,7 @@ export default function OrchidsLanding() {
         </motion.div>
 
         {/* Desktop links */}
-        <div className="hidden md:flex items-center gap-8">
+        <div className="hidden md:flex items-center gap-8 pl-10">
           {NAV_LINKS.map((link) => (
             <motion.a
               key={link}
@@ -457,7 +457,7 @@ export default function OrchidsLanding() {
 
         {/* Hamburger */}
         <motion.button
-          className="md:hidden flex flex-col gap-[5px] bg-transparent border-none cursor-pointer p-1.5"
+          className="md:hidden flex flex-col gap-1.25 bg-transparent border-none cursor-pointer p-1.5"
           onClick={() => setMenuOpen(!menuOpen)}
           whileTap={{ scale: 0.88 }}
         >
@@ -499,20 +499,20 @@ export default function OrchidsLanding() {
                   initial={{ opacity: 0, x: -10 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: i * 0.05 }}
-                  className="text-sm text-[#7a7a8c] hover:text-white transition-colors"
+                  className="text-sm text-[#7a7a8c] hover:text-white transition-colors pl-16!"
                   onClick={() => setMenuOpen(false)}
                 >
                   {link}
                 </motion.a>
               ))}
-              <div className="flex items-center gap-3 pt-1">
+              <div className="flex flex-col items-start gap-3 pt-1 pl-16!">
                 <a
                   href="#"
                   className="text-sm text-[#7a7a8c] hover:text-white transition-colors"
                 >
                   Log In
                 </a>
-                <button className="text-sm text-white border border-white/25 rounded-full px-4 py-1.5 bg-transparent cursor-pointer">
+                <button className="text-sm text-white border border-[#d36fe2] rounded-full px-4! py-1.5! bg-transparent cursor-pointer">
                   Get Access
                 </button>
               </div>
@@ -530,7 +530,7 @@ export default function OrchidsLanding() {
           transition={{ duration: 0.52, delay: 0.26, ease: [0.22, 1, 0.36, 1] }}
           className="mb-8"
         >
-          <span className="inline-flex items-center text-[13px] text-[#ffffff] border border-[#e879f9] rounded-full px-4.5 py-1.5 lg:px-4.5! lg:py-2! bg-white/2.5 tracking-tight mt-5!">
+          <span className="inline-flex items-center text-[13px] text-[#ffffff] border border-[#e879f9] rounded-full px-6! py-2! lg:px-4.5! lg:py-2! bg-white/2.5 tracking-tight mt-5!">
             From Idea to Product — Faster Than Ever
           </span>
         </motion.div>
@@ -598,7 +598,7 @@ export default function OrchidsLanding() {
               transition={{ type: "spring", stiffness: 400, damping: 22 }}
             >
               <div className="flex items-center gap-2 mt-8!">
-                {stat.showAvatars && (
+                {/* {stat.showAvatars && (
                   <div className="flex">
                     {AVATAR_COLORS.map(([from, to], j) => (
                       <div
@@ -612,7 +612,7 @@ export default function OrchidsLanding() {
                       />
                     ))}
                   </div>
-                )}
+                )} */}
                 <span className="text-xl font-semibold text-white tracking-tight">
                   {stat.value}
                 </span>
@@ -656,7 +656,7 @@ export default function OrchidsLanding() {
                   value={idea}
                   onChange={(e) => setIdea(e.target.value)}
                   placeholder="Give me an idea about your app ..."
-                  className="flex-1 bg-transparent border-none resize-none text-sm text-[#c0c0d0] leading-[1.68] min-h-[110px]"
+                  className="flex-1 bg-transparent border-none resize-none text-sm text-[#c0c0d0] leading-[1.68] min-h-22"
                 />
               </div>
               <div className="flex items-center justify-between">
@@ -709,7 +709,7 @@ export default function OrchidsLanding() {
           {TAGS.map((tag) => (
             <motion.button
               key={tag.label}
-              className="flex items-center gap-[7px] text-[13px] text-[#fff] hover:text-[#9a9aaa] bg-transparent border-none cursor-pointer p-0 transition-colors duration-200 mt-3!"
+              className="flex items-center gap-1.75 text-[13px] text-white hover:text-[#9a9aaa] bg-transparent border-none cursor-pointer p-0 transition-colors duration-200 mt-3! lg:mb-10!"
               whileHover={{ y: -1 }}
               transition={{ type: "spring", stiffness: 400, damping: 22 }}
             >
@@ -717,80 +717,6 @@ export default function OrchidsLanding() {
               {tag.label}
             </motion.button>
           ))}
-        </motion.div>
-
-        {/* Partners */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.9, delay: 1.1 }}
-          //   className="w-full max-w-[860px] border-t border-white/[0.06] pt-6 pb-12"
-        >
-          <div className="flex flex-wrap justify-center items-center gap-x-8 gap-y-2.5 lg:hidden">
-            {PARTNERS.map((p, i) => (
-              <motion.span
-                key={i}
-                className="flex items-center gap-[5px] text-[13px] font-medium text-white cursor-pointer transition-colors duration-200 hover:text-[#e879f9]"
-                whileHover={{ scale: 1.1 }}
-                transition={{ type: "spring", stiffness: 400, damping: 22 }}
-              >
-                {p.name === "Framer" && (
-                  <svg
-                    width="10"
-                    height="10"
-                    viewBox="0 0 24 24"
-                    fill="currentColor"
-                  >
-                    <path d="M4 0h16v8h-8zM4 8h8l8 8H4zM4 16h8v8z" />
-                  </svg>
-                )}
-                {p.name === "Atlas" && (
-                  <svg
-                    width="10"
-                    height="10"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2.2"
-                  >
-                    <circle cx="12" cy="12" r="10" />
-                    <path d="M2 12h20M12 2a14 14 0 010 20" />
-                  </svg>
-                )}
-                {p.name === "Shape" && (
-                  <svg
-                    width="10"
-                    height="10"
-                    viewBox="0 0 24 24"
-                    fill="currentColor"
-                  >
-                    <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26" />
-                  </svg>
-                )}
-                {p.name === "Graphite" && (
-                  <svg
-                    width="10"
-                    height="10"
-                    viewBox="0 0 24 24"
-                    fill="currentColor"
-                  >
-                    <circle cx="12" cy="12" r="10" />
-                  </svg>
-                )}
-                {p.name === "slack" && (
-                  <svg
-                    width="10"
-                    height="10"
-                    viewBox="0 0 24 24"
-                    fill="currentColor"
-                  >
-                    <path d="M5.042 15.165a2.528 2.528 0 010-5.055H7.57v2.527a2.528 2.528 0 01-2.528 2.528zm0-7.582A2.528 2.528 0 012.514 5.055a2.528 2.528 0 012.528 2.528v2.527H5.042zm7.582 0a2.528 2.528 0 010-5.055 2.528 2.528 0 012.527 2.527v2.528h-2.527zm2.527 7.582a2.528 2.528 0 01-2.527-2.528V10.11h2.527a2.528 2.528 0 010 5.055z" />
-                  </svg>
-                )}
-                {p.name}
-              </motion.span>
-            ))}
-          </div>
         </motion.div>
       </main>
     </div>
