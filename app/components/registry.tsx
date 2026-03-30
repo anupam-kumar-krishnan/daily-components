@@ -19,6 +19,7 @@ import HeroLocqube from "./herosection";
 import HeroSky from "./herosky";
 import HeroSecturityGreen from "./herosecuritygreen";
 import Heroorchid from "./heroorchid";
+import Herostar from "./herostar";
 
 const Placeholder =
   (label: string, accent: string): ComponentType =>
@@ -272,5 +273,14 @@ export const REGISTRY: RegistryEntry[] = [
     tag: "hero",
     thumb: "lines",
     component: Heroorchid,
+  },
+  {
+    id: 21,
+    title: "Hero Section",
+    subtitle: "Star Theme",
+    desc: "Hero Section with shooting star animation",
+    tag: "hero",
+    thumb: "lines",
+    component: Herostar,
   },
 ];
