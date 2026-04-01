@@ -81,10 +81,6 @@ function Particle({ left, top, delay, duration }: ParticleProps) {
   );
 }
 
-// Tapered beam rendered as inline SVG
-// W=600 viewbox, beam center at x=300
-// Top: 1px wide → Bottom: 38px wide (tapered trapezoid)
-// Then shock wave burst at the bottom
 function TaperedBeam() {
   const cx = 300; // center x in viewBox
   const topW = 0.6; // half-width at top (very thin)
@@ -108,22 +104,6 @@ function TaperedBeam() {
       }}
     >
       <defs>
-        {/* Main beam gradient: invisible at top, bright gold at bottom */}
-        <linearGradient id="beamGrad" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="rgba(255,255,220,0)" />
-          <stop offset="30%" stopColor="rgba(255,210,80,0.18)" />
-          <stop offset="70%" stopColor="rgba(255,185,50,0.65)" />
-          <stop offset="100%" stopColor="rgba(255,200,60,0.95)" />
-        </linearGradient>
-
-        {/* Core bright white-gold center line */}
-        <linearGradient id="coreGrad" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="rgba(255,255,255,0)" />
-          <stop offset="40%" stopColor="rgba(255,240,180,0.3)" />
-          <stop offset="85%" stopColor="rgba(255,235,150,0.9)" />
-          <stop offset="100%" stopColor="rgba(255,255,220,1)" />
-        </linearGradient>
-
         {/* Shock glow radial */}
         <radialGradient
           id="shockGrad"
@@ -313,7 +293,7 @@ export default function ZenvyLanding() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.55, ease: "easeOut" }}
           style={{
-            position: "fixed",
+            position: "sticky",
             top: 0,
             left: 0,
             right: 0,

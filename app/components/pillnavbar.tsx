@@ -129,7 +129,7 @@ export default function Navbar({
         {/* Navbar wrapper */}
         <div
           style={{
-            position: isInsideModal ? "sticky" : "fixed",
+            position: "sticky",
             top: 0,
             left: 0,
             right: 0,

@@ -21,6 +21,7 @@ import HeroSecturityGreen from "./herosecuritygreen";
 import Heroorchid from "./heroorchid";
 import Herostar from "./herostar";
 import LoginScreen from "./loginscreen";
+import HeroThunder from "./herothunder";
 
 const Placeholder =
   (label: string, accent: string): ComponentType =>
@@ -288,5 +289,14 @@ export const REGISTRY: RegistryEntry[] = [
     tag: "login",
     thumb: "lines",
     component: LoginScreen,
+  },
+  {
+    id: 23,
+    title: "Hero Section",
+    subtitle: "Orange Glowing Ray",
+    desc: "An Orange gradient themed Hero Section",
+    tag: "hero",
+    thumb: "lines",
+    component: HeroThunder,
   },
 ];
