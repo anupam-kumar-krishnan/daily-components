@@ -25,6 +25,7 @@ const ALL_FILTERS: { label: string; value: "all" | Tag }[] = [
   { label: "CTA", value: "cta" },
   { label: "Footer", value: "footer" },
   { label: "Feature", value: "feature" },
+  { label: "Login", value: "login" },
 ];
 
 const BADGE_STYLES: Record<Tag, string> = {
@@ -38,6 +39,7 @@ const BADGE_STYLES: Record<Tag, string> = {
   bento: "bg-violet-500/10 text-violet-300 border border-violet-500/20",
   footer: "bg-gray-500/10 text-gray-300 border border-gray-500/20",
   feature: "bg-cyan-500/10 text-cyan-300 border border-cyan-500/20",
+  login: "bg-lime-500/10 text-lime-300 border border-lime-500/20",
 };
 
 // ─── Thumbnail components ────────────────────────────────────────────────────

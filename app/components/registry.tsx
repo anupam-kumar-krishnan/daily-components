@@ -20,6 +20,7 @@ import HeroSky from "./herosky";
 import HeroSecturityGreen from "./herosecuritygreen";
 import Heroorchid from "./heroorchid";
 import Herostar from "./herostar";
+import LoginScreen from "./loginscreen";
 
 const Placeholder =
   (label: string, accent: string): ComponentType =>
@@ -57,6 +58,7 @@ export type Tag =
   | "interactive"
   | "card"
   | "layout"
+  | "login"
   | "menu"
   | "cta"
   | "bento"
@@ -85,12 +87,8 @@ export interface RegistryEntry {
   desc: string;
   tag: Tag;
   thumb: ThumbType;
-  component: ComponentType; // ← your imported component goes here
+  component: ComponentType;
 }
-
-// ─────────────────────────────────────────────────────────────────────────────
-//  THE REGISTRY — edit this array to add / remove components
-// ─────────────────────────────────────────────────────────────────────────────
 
 export const REGISTRY: RegistryEntry[] = [
   {
@@ -100,7 +98,6 @@ export const REGISTRY: RegistryEntry[] = [
     desc: "An orange dark-themed Hero Section",
     tag: "hero",
     thumb: "lines",
-    // component: Placeholder("Hero — Orange Theme", "#f97316"),
     component: HeroOrange,
   },
   {
@@ -282,5 +279,14 @@ export const REGISTRY: RegistryEntry[] = [
     tag: "hero",
     thumb: "lines",
     component: Herostar,
+  },
+  {
+    id: 22,
+    title: "Login Screen",
+    subtitle: "",
+    desc: "Login Screen with Animation",
+    tag: "login",
+    thumb: "lines",
+    component: LoginScreen,
   },
 ];
