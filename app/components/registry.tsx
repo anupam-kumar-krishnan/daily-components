@@ -7,7 +7,6 @@ import HeroMinimal from "./herominimal";
 import HeroNeon from "./herogreen";
 import ReactiveCard from "./crystalcards";
 import FlipCards from "./flipcard";
-import PillNavbar from "./pillnavbar";
 import HeroPurple from "./heropurple";
 import ScatterButton from "./speeddialbuttons";
 import CTASection from "./ctasection";
@@ -22,6 +21,9 @@ import Heroorchid from "./heroorchid";
 import Herostar from "./herostar";
 import LoginScreen from "./loginscreen";
 import HeroThunder from "./herothunder";
+import PillNavbarBase from "./pillnavbar";
+
+const PillNavbar = () => <PillNavbarBase isInsideModal={true} />;
 
 const Placeholder =
   (label: string, accent: string): ComponentType =>
