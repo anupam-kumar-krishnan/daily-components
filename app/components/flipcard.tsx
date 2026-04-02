@@ -175,7 +175,6 @@ const BlackHole = ({ theme }: { theme: (typeof THEMES)[ThemeKey] }) => {
       const { r, g, b, glow } = themeRef.current;
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      // Glow
       const grad = ctx.createRadialGradient(
         cx,
         cy,
@@ -190,7 +189,6 @@ const BlackHole = ({ theme }: { theme: (typeof THEMES)[ThemeKey] }) => {
       ctx.fillStyle = grad;
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-      // Rings
       const t = tRef.current;
       for (let i = 22; i >= 1; i--) {
         const radius = 18 + i * 11.5 + Math.sin(t * 1.2 + i * 0.4) * 3;
@@ -204,7 +202,6 @@ const BlackHole = ({ theme }: { theme: (typeof THEMES)[ThemeKey] }) => {
         ctx.stroke();
       }
 
-      // Core
       const core = ctx.createRadialGradient(cx, cy, 0, cx, cy, 28);
       core.addColorStop(0, "rgba(0,0,0,1)");
       core.addColorStop(1, "rgba(0,0,0,0)");
@@ -230,15 +227,15 @@ const FlipCard = ({ card }: { card: (typeof CARDS)[0] }) => {
   const t = THEMES[card.color];
   const cardBg = `linear-gradient(160deg, ${t.bg} 0%, ${t.bg}99 100%)`;
   const border = "1px solid rgba(255,255,255,0.07)";
-  const roundedClass = "rounded-[36px]";
+  const BR = 36;
 
   return (
     <div style={{ perspective: 1200 }}>
       <motion.div
         animate={{ rotateY: flipped ? 180 : 0 }}
         transition={{ duration: 0.65, ease: [0.4, 0, 0.2, 1] }}
+        className="flip-card-inner"
         style={{
-          width: 300,
           height: 420,
           position: "relative",
           transformStyle: "preserve-3d",
@@ -246,8 +243,12 @@ const FlipCard = ({ card }: { card: (typeof CARDS)[0] }) => {
       >
         {/* Front */}
         <div
-          className={`absolute inset-0 ${roundedClass} overflow-hidden`}
-          style={{ backfaceVisibility: "hidden", background: cardBg }}
+          className="absolute inset-0 overflow-hidden"
+          style={{
+            backfaceVisibility: "hidden",
+            background: cardBg,
+            borderRadius: BR,
+          }}
         >
           <BlackHole theme={t} />
           <div className="absolute bottom-0 left-0 right-0 p-5 flex items-end justify-between z-10">
@@ -267,11 +268,12 @@ const FlipCard = ({ card }: { card: (typeof CARDS)[0] }) => {
               onClick={() => setFlipped(true)}
               whileHover={{ scale: 1.12, rotate: 90 }}
               whileTap={{ scale: 0.9 }}
-              className="w-10 h-10 rounded-xl flex items-center justify-center cursor-pointer"
+              className="w-10 h-10 flex items-center justify-center cursor-pointer"
               style={{
                 color: t.arrow,
                 background: t.btn,
                 border: `1px solid ${t.btnBorder}`,
+                borderRadius: 12,
               }}
             >
               <svg
@@ -289,24 +291,25 @@ const FlipCard = ({ card }: { card: (typeof CARDS)[0] }) => {
             </motion.button>
           </div>
           <div
-            className={`absolute inset-0 ${roundedClass} pointer-events-none`}
-            style={{ border }}
+            className="absolute inset-0 pointer-events-none"
+            style={{ border, borderRadius: BR }}
           />
         </div>
 
         {/* Back */}
         <div
           onClick={() => setFlipped(false)}
-          className={`absolute inset-0 ${roundedClass} overflow-hidden flex flex-col p-6 cursor-pointer`}
+          className="absolute inset-0 overflow-hidden flex flex-col p-6 cursor-pointer"
           style={{
             backfaceVisibility: "hidden",
             transform: "rotateY(180deg)",
             background: cardBg,
+            borderRadius: BR,
           }}
         >
           <div
-            className={`absolute inset-0 ${roundedClass} pointer-events-none`}
-            style={{ border }}
+            className="absolute inset-0 pointer-events-none"
+            style={{ border, borderRadius: BR }}
           />
           <div className="mb-4">
             <div className="flex items-center gap-2 mb-2">
@@ -362,10 +365,11 @@ const FlipCard = ({ card }: { card: (typeof CARDS)[0] }) => {
             }}
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.97 }}
-            className="w-full flex items-center justify-between px-4 py-3 rounded-2xl text-white text-[13px] font-semibold cursor-pointer"
+            className="w-full flex items-center justify-between px-4 py-3 text-white text-[13px] font-semibold cursor-pointer"
             style={{
               background: "rgba(255,255,255,0.06)",
               border: "1px solid rgba(255,255,255,0.1)",
+              borderRadius: 16,
             }}
           >
             <span style={{ fontFamily: "'Syne',sans-serif" }}>{card.cta}</span>
@@ -391,21 +395,31 @@ const FlipCard = ({ card }: { card: (typeof CARDS)[0] }) => {
 export default function DesignSystemCards() {
   return (
     <div
-      className="min-h-screen flex flex-col items-center justify-center gap-10 px-10"
+      className="min-h-screen flex flex-col items-center justify-center gap-10 px-4 sm:px-10 py-10"
       style={{ background: "#0a0908" }}
     >
       <h1
-        className="text-white text-5xl font-bold"
+        className="text-white text-3xl sm:text-5xl font-bold"
         style={{ fontFamily: "'Syne',sans-serif" }}
       >
         Flip Cards
       </h1>
-      <div className="flex items-center justify-center gap-6">
+
+      {/*
+        Mobile  → flex-col (single vertical column)
+        Desktop → flex-row (original horizontal row)
+      */}
+      <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
         {CARDS.map((card) => (
           <FlipCard key={card.color} card={card} />
         ))}
       </div>
-      <style>{`@import url('https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500&display=swap');`}</style>
+
+      <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500&display=swap');
+        .flip-card-inner { width: 60vw; }
+        @media (min-width: 640px) { .flip-card-inner { width: 300px; } }
+      `}</style>
     </div>
   );
 }

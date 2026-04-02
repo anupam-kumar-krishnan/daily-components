@@ -186,7 +186,7 @@ const ABTestIcon = () => (
 );
 
 const UXDesignIcon = () => (
-  <div className="relative flex items-center justify-center w-full h-32">
+  <div className="relative flex items-center justify-center w-full h-32 overflow-hidden">
     <div className="absolute inset-0 overflow-hidden rounded-xl opacity-15">
       {[...Array(6)].map((_, i) => (
         <div
@@ -196,7 +196,7 @@ const UXDesignIcon = () => (
         />
       ))}
     </div>
-    <div className="float2 absolute right-10 top-4 bg-zinc-800/40 rounded-2xl border border-zinc-700/40 w-24 h-24" />
+
     <div className="float relative bg-zinc-800 rounded-2xl border border-zinc-700 w-28 h-28 shadow-2xl flex flex-col z-10">
       <div className="h-1.5 w-8 bg-zinc-700 rounded-full mx-auto mt-2 mb-1" />
       <div className="flex-1 flex flex-col gap-1.5 px-2 pb-2">
@@ -328,25 +328,72 @@ const ConversionIcon = () => (
 );
 
 const WorkflowIcon = () => {
-  const laptopCX = 120,
-    laptopCY = 55;
-  const lx = 5,
-    rx = 235;
-  const serverYs = [16, 55, 94];
+  // All coordinates live inside the SVG viewBox (0 0 240 112)
+  // so the illustration scales to any card width without clipping.
+  const cx = 120,
+    cy = 56;
+  const serverW = 36,
+    serverH = 22,
+    serverRx = 4;
+  const lx = 6,
+    rx = 240 - 6 - serverW;
+  const serverYs = [12, 45, 78];
 
   const lPaths = serverYs.map(
     (y) =>
-      `M${lx + 12},${y} C${laptopCX - 50},${y} ${laptopCX - 50},${laptopCY} ${laptopCX - 26},${laptopCY}`,
+      `M${lx + serverW},${y + serverH / 2} C${cx - 40},${y + serverH / 2} ${cx - 40},${cy} ${cx - 28},${cy}`,
   );
   const rPaths = serverYs.map(
     (y) =>
-      `M${rx - 12},${y} C${laptopCX + 50},${y} ${laptopCX + 50},${laptopCY} ${laptopCX + 26},${laptopCY}`,
+      `M${rx},${y + serverH / 2} C${cx + 40},${y + serverH / 2} ${cx + 40},${cy} ${cx + 28},${cy}`,
+  );
+
+  const ServerRect = ({ x, y }: { x: number; y: number }) => (
+    <g>
+      <rect
+        x={x}
+        y={y}
+        width={serverW}
+        height={serverH}
+        rx={serverRx}
+        fill="#27272a"
+        stroke="#3f3f46"
+        strokeWidth="0.8"
+      />
+      <line
+        x1={x + 4}
+        y1={y + 6}
+        x2={x + serverW - 4}
+        y2={y + 6}
+        stroke="#71717a"
+        strokeWidth="0.8"
+        strokeLinecap="round"
+      />
+      <line
+        x1={x + 4}
+        y1={y + 11}
+        x2={x + serverW - 10}
+        y2={y + 11}
+        stroke="#52525b"
+        strokeWidth="0.8"
+        strokeLinecap="round"
+      />
+      <line
+        x1={x + 4}
+        y1={y + 16}
+        x2={x + serverW - 14}
+        y2={y + 16}
+        stroke="#52525b"
+        strokeWidth="0.8"
+        strokeLinecap="round"
+      />
+    </g>
   );
 
   return (
-    <div className="relative flex items-center justify-center w-full h-32">
+    <div className="relative w-full h-32 overflow-hidden">
       {/* Grid background */}
-      <div className="absolute inset-0 overflow-hidden rounded-xl opacity-15">
+      <div className="absolute inset-0 rounded-xl opacity-15 overflow-hidden">
         {[...Array(6)].map((_, i) => (
           <div
             key={`h${i}`}
@@ -363,12 +410,13 @@ const WorkflowIcon = () => {
         ))}
       </div>
 
-      {/* SVG paths layer */}
+      {/* Everything in one SVG — scales perfectly at any width */}
       <svg
         className="absolute inset-0 w-full h-full"
         viewBox="0 0 240 112"
         preserveAspectRatio="xMidYMid meet"
       >
+        {/* Static connector lines */}
         {lPaths.map((d, i) => (
           <path
             key={`ls${i}`}
@@ -387,6 +435,7 @@ const WorkflowIcon = () => {
             strokeWidth="1"
           />
         ))}
+        {/* Animated data packets */}
         {lPaths.map((d, i) => (
           <path
             key={`la${i}`}
@@ -409,48 +458,87 @@ const WorkflowIcon = () => {
             className={`data-flow-r${i + 1}`}
           />
         ))}
+
+        {/* Left servers */}
+        {serverYs.map((y, i) => (
+          <ServerRect key={`l${i}`} x={lx} y={y} />
+        ))}
+
+        {/* Right servers */}
+        {serverYs.map((y, i) => (
+          <ServerRect key={`r${i}`} x={rx} y={y} />
+        ))}
+
+        {/* Laptop screen */}
+        <rect
+          x={cx - 28}
+          y={cy - 22}
+          width={56}
+          height={38}
+          rx={4}
+          fill="#27272a"
+          stroke="#52525b"
+          strokeWidth="1"
+        />
+        <rect
+          x={cx - 24}
+          y={cy - 18}
+          width={48}
+          height={28}
+          rx={2}
+          fill="#09090b"
+          stroke="#3f3f46"
+          strokeWidth="0.8"
+        />
+        <line
+          x1={cx - 18}
+          y1={cy - 8}
+          x2={cx + 18}
+          y2={cy - 8}
+          stroke="#52525b"
+          strokeWidth="1"
+          strokeLinecap="round"
+        />
+        <line
+          x1={cx - 18}
+          y1={cy - 2}
+          x2={cx + 10}
+          y2={cy - 2}
+          stroke="#52525b"
+          strokeWidth="1"
+          strokeLinecap="round"
+        />
+        <line
+          x1={cx - 18}
+          y1={cy + 4}
+          x2={cx + 4}
+          y2={cy + 4}
+          stroke="#71717a"
+          strokeWidth="1"
+          strokeLinecap="round"
+        />
+        {/* Laptop base */}
+        <rect
+          x={cx - 32}
+          y={cy + 16}
+          width={64}
+          height={5}
+          rx={2}
+          fill="#3f3f46"
+          stroke="#52525b"
+          strokeWidth="0.8"
+        />
+        <rect
+          x={cx - 36}
+          y={cy + 21}
+          width={72}
+          height={3}
+          rx={1.5}
+          fill="#27272a"
+          stroke="#3f3f46"
+          strokeWidth="0.8"
+        />
       </svg>
-
-      {/* Left 3 servers — flush to left edge */}
-      <div className="absolute left-[-25] flex flex-col gap-3 z-10">
-        {serverYs.map((_, i) => (
-          <div
-            key={i}
-            className="w-10 h-6 bg-zinc-800 border border-zinc-700 rounded-md shadow flex flex-col justify-center gap-0.5 px-1.5"
-          >
-            <div className="h-0.5 w-full bg-zinc-500 rounded-full" />
-            <div className="h-0.5 w-5 bg-zinc-600 rounded-full" />
-            <div className="h-0.5 w-3 bg-zinc-600 rounded-full self-end" />
-          </div>
-        ))}
-      </div>
-
-      {/* Center laptop */}
-      <div className="relative z-10 flex flex-col items-center">
-        <div className="w-16 h-11 bg-zinc-800 border border-zinc-600 rounded-t-lg flex items-center justify-center shadow-xl">
-          <div className="bg-zinc-950 rounded border border-zinc-700 flex flex-col justify-center gap-0.5 px-1.5 w-[52px] h-8">
-            <div className="h-0.5 bg-zinc-600 rounded-full w-full" />
-            <div className="h-0.5 bg-zinc-600 rounded-full w-3/4" />
-            <div className="h-0.5 bg-zinc-500 rounded-full w-1/2" />
-          </div>
-        </div>
-        <div className="w-18 h-2 bg-zinc-700 border-x border-b border-zinc-600 rounded-b-md" />
-        <div className="w-20 h-1 bg-zinc-800 border-x border-b border-zinc-700 rounded-b-lg" />
-      </div>
-
-      {/* Right 3 servers — flush to right edge */}
-      <div className="absolute right-[-25] flex flex-col gap-3 z-10">
-        {serverYs.map((_, i) => (
-          <div
-            key={i}
-            className="w-10 h-6 bg-zinc-800 border border-zinc-700 rounded-md shadow flex flex-col justify-center gap-0.5 px-1.5"
-          >
-            <div className="h-0.5 w-full bg-zinc-500 rounded-full" />
-            <div className="h-0.5 w-5 bg-zinc-600 rounded-full" />
-            <div className="h-0.5 w-3 bg-zinc-600 rounded-full self-end" />
-          </div>
-        ))}
-      </div>
     </div>
   );
 };
@@ -534,10 +622,11 @@ export default function BentoGrid() {
   return (
     <>
       <GlobalStyles />
-      <div className="min-h-screen bg-zinc-950 flex items-center justify-center p-8">
-        <div className="w-full max-w-4xl">
-          <div className="grid grid-cols-4 grid-rows-2 gap-4">
-            <Card className="col-span-2">
+      <div className="min-h-screen bg-zinc-950 flex items-center justify-center p-4 sm:p-10">
+        <div className="w-full max-w-6xl">
+          {/* Mobile: single column stack. Desktop: original 4-col grid unchanged. */}
+          <div className="grid grid-cols-1 gap-5 sm:grid-cols-4 sm:grid-rows-2">
+            <Card className="sm:col-span-2">
               <ABTestIcon />
               <div>
                 <h3 className="text-white font-semibold text-base leading-snug mb-1">
@@ -598,7 +687,7 @@ export default function BentoGrid() {
               </div>
             </Card>
 
-            <Card className="col-span-2">
+            <Card className="sm:col-span-2">
               <ExpertIcon />
               <div>
                 <h3 className="text-white font-semibold text-base leading-snug mb-1">
