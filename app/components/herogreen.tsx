@@ -1,5 +1,10 @@
 "use client";
-import { motion, useScroll, useTransform } from "framer-motion";
+import {
+  motion,
+  useScroll,
+  useTransform,
+  AnimatePresence,
+} from "framer-motion";
 import { useRef, useEffect, useState } from "react";
 
 const NAV_LINKS = ["Product", "Customers", "About us"];
@@ -22,7 +27,6 @@ function ParticleField() {
       opacity: Math.random() * 0.5 + 0.1,
     })),
   );
-
   return (
     <div
       style={{
@@ -70,7 +74,6 @@ function PortalBeam() {
         mixBlendMode: "screen",
       }}
     >
-      {/* Wide soft glow — screen blend means it only adds brightness, never darkens */}
       <motion.div
         style={{
           position: "absolute",
@@ -87,7 +90,6 @@ function PortalBeam() {
         animate={{ opacity: 1 }}
         transition={{ duration: 2, delay: 0.4 }}
       />
-      {/* Flare dot at apex */}
       <motion.div
         style={{
           position: "absolute",
@@ -108,6 +110,191 @@ function PortalBeam() {
   );
 }
 
+function HamburgerIcon({ isOpen }: { isOpen: boolean }) {
+  return (
+    <div
+      style={{
+        width: 22,
+        height: 16,
+        position: "relative",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "space-between",
+      }}
+    >
+      <motion.span
+        animate={isOpen ? { rotate: 45, y: 7 } : { rotate: 0, y: 0 }}
+        transition={{ duration: 0.25, ease: "easeInOut" }}
+        style={{
+          display: "block",
+          height: 2,
+          borderRadius: 2,
+          background: "#fff",
+          transformOrigin: "center",
+        }}
+      />
+      <motion.span
+        animate={isOpen ? { opacity: 0, scaleX: 0 } : { opacity: 1, scaleX: 1 }}
+        transition={{ duration: 0.2 }}
+        style={{
+          display: "block",
+          height: 2,
+          borderRadius: 2,
+          background: "#fff",
+        }}
+      />
+      <motion.span
+        animate={isOpen ? { rotate: -45, y: -7 } : { rotate: 0, y: 0 }}
+        transition={{ duration: 0.25, ease: "easeInOut" }}
+        style={{
+          display: "block",
+          height: 2,
+          borderRadius: 2,
+          background: "#fff",
+          transformOrigin: "center",
+        }}
+      />
+    </div>
+  );
+}
+
+// Rendered INSIDE <nav> so position:absolute top:100% anchors right below the navbar
+function MobileMenu({
+  isOpen,
+  onClose,
+}: {
+  isOpen: boolean;
+  onClose: () => void;
+}) {
+  return (
+    <AnimatePresence>
+      {isOpen && (
+        <>
+          {/* Full-screen backdrop */}
+          <motion.div
+            key="backdrop"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            onClick={onClose}
+            style={{
+              position: "fixed",
+              inset: 0,
+              zIndex: 40,
+              background: "rgba(0,0,0,0.55)",
+              backdropFilter: "blur(2px)",
+            }}
+          />
+
+          {/* Drawer — sits directly below navbar via top:100% */}
+          <motion.div
+            key="drawer"
+            initial={{ opacity: 0, y: -10, scaleY: 0.92 }}
+            animate={{ opacity: 1, y: 0, scaleY: 1 }}
+            exit={{ opacity: 0, y: -10, scaleY: 0.92 }}
+            transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
+            style={{
+              position: "absolute",
+              top: "calc(100% + 8px)",
+              left: 0,
+              right: 0,
+              zIndex: 50,
+              borderRadius: 18,
+              background: "linear-gradient(160deg, #141a10 0%, #0d120a 100%)",
+              border: "1px solid #2a3520",
+              boxShadow:
+                "0 20px 60px rgba(0,0,0,0.7), 0 0 0 1px rgba(127,255,0,0.08), inset 0 1px 0 rgba(127,255,0,0.12)",
+              overflow: "hidden",
+              transformOrigin: "top center",
+            }}
+          >
+            {/* Green glow line */}
+            <div
+              style={{
+                position: "absolute",
+                top: 0,
+                left: "50%",
+                transform: "translateX(-50%)",
+                width: "80%",
+                height: 1,
+                background:
+                  "linear-gradient(90deg, transparent, rgba(127,255,0,0.6), transparent)",
+              }}
+            />
+
+            <div style={{ padding: "8px 8px 16px" }}>
+              {NAV_LINKS.map((link, i) => (
+                <motion.a
+                  key={link}
+                  href="#"
+                  onClick={onClose}
+                  initial={{ opacity: 0, x: -12 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.06 + i * 0.05, ease: "easeOut" }}
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                    padding: "14px 16px",
+                    borderRadius: 12,
+                    color: "#ccc",
+                    fontSize: 15,
+                    fontWeight: 500,
+                    textDecoration: "none",
+                    cursor: "pointer",
+                    transition: "background 0.15s, color 0.15s",
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.background = "rgba(127,255,0,0.07)";
+                    e.currentTarget.style.color = "#fff";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.background = "transparent";
+                    e.currentTarget.style.color = "#ccc";
+                  }}
+                >
+                  <span>{link}</span>
+                  <span style={{ color: "#444", fontSize: 12 }}>›</span>
+                </motion.a>
+              ))}
+
+              <div
+                style={{ height: 1, background: "#1e2a18", margin: "8px 16px" }}
+              />
+
+              <motion.div
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.24 }}
+                style={{ padding: "8px 8px 0" }}
+              >
+                <button
+                  onClick={onClose}
+                  style={{
+                    width: "100%",
+                    padding: "13px",
+                    borderRadius: 12,
+                    background: "#7fff00",
+                    color: "#000",
+                    fontWeight: 700,
+                    fontSize: 14,
+                    border: "none",
+                    cursor: "pointer",
+                    letterSpacing: "-0.01em",
+                  }}
+                >
+                  Book a demo
+                </button>
+              </motion.div>
+            </div>
+          </motion.div>
+        </>
+      )}
+    </AnimatePresence>
+  );
+}
+
 function DashboardCard() {
   return (
     <motion.div
@@ -121,7 +308,6 @@ function DashboardCard() {
       animate={{ opacity: 1, y: 0, scale: 1 }}
       transition={{ duration: 1.1, delay: 1, ease: [0.22, 1, 0.36, 1] }}
     >
-      {/* glow behind */}
       <div
         style={{
           position: "absolute",
@@ -133,7 +319,6 @@ function DashboardCard() {
           filter: "blur(24px)",
         }}
       />
-
       <div
         style={{
           position: "relative",
@@ -145,7 +330,6 @@ function DashboardCard() {
             "0 28px 72px rgba(0,0,0,0.7), inset 0 1px 0 rgba(120,255,0,0.15)",
         }}
       >
-        {/* Top bar */}
         <div
           style={{
             display: "flex",
@@ -213,8 +397,6 @@ function DashboardCard() {
             ))}
           </div>
         </div>
-
-        {/* Body */}
         <div style={{ padding: "18px 20px" }}>
           <div
             style={{
@@ -228,12 +410,8 @@ function DashboardCard() {
           >
             <div>
               <p
-                style={{
-                  fontSize: 10,
-                  color: "#666",
-                  marginBottom: "3px",
-                  marginLeft: "-100px",
-                }}
+                style={{ fontSize: 10, color: "#666", marginBottom: "3px" }}
+                className="-ml-25"
               >
                 Friday, 20 March 2026
               </p>
@@ -290,8 +468,6 @@ function DashboardCard() {
               </button>
             </div>
           </div>
-
-          {/* Monthly summary */}
           <p
             style={{
               fontSize: 11,
@@ -316,30 +492,7 @@ function DashboardCard() {
             }}
           >
             <div>
-              <p
-                style={{
-                  fontSize: 10,
-                  color: "#666",
-                  margin: "0 0 4px",
-                  display: "flex",
-                  alignItems: "center",
-                  gap: 4,
-                }}
-              >
-                <svg
-                  aria-hidden="true"
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="12"
-                  height="12"
-                  fill="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M6 2a2 2 0 0 0-2 2v15a3 3 0 0 0 3 3h12a1 1 0 1 0 0-2h-2v-2h2a1 1 0 0 0 1-1V4a2 2 0 0 0-2-2h-8v16h5v2H7a1 1 0 1 1 0-2h1V2H6Z"
-                    clipRule="evenodd"
-                  />
-                </svg>
+              <p style={{ fontSize: 10, color: "#666", margin: "0 0 4px" }}>
                 Total Contract
               </p>
               <motion.p
@@ -348,7 +501,6 @@ function DashboardCard() {
                   fontWeight: 900,
                   color: "#fff",
                   margin: 0,
-                  fontVariantNumeric: "tabular-nums",
                 }}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
@@ -357,7 +509,6 @@ function DashboardCard() {
                 70,000.00
               </motion.p>
             </div>
-            {/* play button */}
             <div
               style={{
                 width: 38,
@@ -389,7 +540,6 @@ function DashboardCard() {
                   fontWeight: 900,
                   color: "#fff",
                   margin: 0,
-                  fontVariantNumeric: "tabular-nums",
                 }}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
@@ -399,8 +549,6 @@ function DashboardCard() {
               </motion.p>
             </div>
           </div>
-
-          {/* Stats */}
           <div
             style={{
               display: "grid",
@@ -447,7 +595,22 @@ export default function HeroSection() {
   const containerRef = useRef(null);
   const { scrollYProgress } = useScroll({ target: containerRef });
   const cardY = useTransform(scrollYProgress, [0, 1], [0, 70]);
-  const heroOpacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 768) setMenuOpen(false);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [menuOpen]);
 
   return (
     <section
@@ -456,7 +619,6 @@ export default function HeroSection() {
         position: "relative",
         minHeight: "100vh",
         overflowX: "hidden",
-        overflowY: "hidden",
         display: "flex",
         flexDirection: "column",
         background: "#060805",
@@ -470,92 +632,98 @@ export default function HeroSection() {
         .orbitly-headline { font-family:'Instrument Serif',serif; line-height:1.08; letter-spacing:-0.02em; }
         .orbitly-nav-link { color:#888; font-size:13px; font-weight:500; text-decoration:none; transition:color 0.2s; }
         .orbitly-nav-link:hover { color:#ddd; }
-        @media(max-width:640px) {
+        .desktop-nav { display:flex; }
+        .mobile-hamburger { display:none; }
+        @media(max-width:767px) {
+          .desktop-nav { display:none !important; }
+          .desktop-cta { display:none !important; }
+          .mobile-hamburger { display:flex !important; }
           .orbitly-headline { font-size:2.4rem !important; }
+        }
+        @media(max-width:480px) {
           .orbitly-stats { grid-template-columns:repeat(2,1fr) !important; }
         }
-        @property --angle {
-          syntax: '<angle>';
-          initial-value: 0deg;
-          inherits: false;
-        }
-        @keyframes spin-border { to { --angle: 360deg; } }
-        .running-border {
-          position: relative;
-          isolation: isolate;
-        }
+        @property --angle { syntax:'<angle>'; initial-value:0deg; inherits:false; }
+        @keyframes spin-border { to { --angle:360deg; } }
+        .running-border { position:relative; isolation:isolate; }
         .running-border::before {
-          content: '';
-          position: absolute;
-          inset: -1.5px;
-          border-radius: inherit;
-          background: conic-gradient(from var(--angle), transparent 65%, #7fff00 80%, #c5ff60 90%, #7fff00 95%, transparent);
-          -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-          -webkit-mask-composite: xor;
-          mask-composite: exclude;
-          padding: 1.5px;
-          animation: spin-border 2.4s linear infinite;
-          pointer-events: none;
-          z-index: -1;
+          content:''; position:absolute; inset:-1.5px; border-radius:inherit;
+          background:conic-gradient(from var(--angle), transparent 65%, #7fff00 80%, #c5ff60 90%, #7fff00 95%, transparent);
+          -webkit-mask:linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+          -webkit-mask-composite:xor; mask-composite:exclude; padding:1.5px;
+          animation:spin-border 2.4s linear infinite; pointer-events:none; z-index:-1;
         }
+        .hamburger-btn {
+          background:rgba(255,255,255,0.04); border:1px solid #2a3520; border-radius:10px;
+          padding:10px 12px; cursor:pointer; display:flex; align-items:center; justify-content:center;
+          transition:background 0.2s, border-color 0.2s;
+        }
+        .hamburger-btn:hover { background:rgba(127,255,0,0.08); border-color:rgba(127,255,0,0.3); }
+        .hamburger-btn[aria-expanded="true"] { background:rgba(127,255,0,0.1); border-color:rgba(127,255,0,0.4); }
       `}</style>
 
       <ParticleField />
       <PortalBeam />
 
-      {/* Navbar */}
+      {/* Nav is position:relative — MobileMenu's absolute top:100% anchors directly below it */}
       <motion.nav
         style={{
           position: "relative",
-          zIndex: 20,
+          zIndex: 60,
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
-          padding: "20px 40px",
+          padding: "18px 24px",
         }}
         initial={{ opacity: 0, y: -14 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
       >
-        <div style={{ display: "flex", alignItems: "center", gap: 40 }}>
-          <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-            <div
-              style={{
-                width: 24,
-                height: 24,
-                borderRadius: 6,
-                background: "#7fff00",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                fontSize: 11,
-                fontWeight: 900,
-                color: "#000",
-              }}
-            >
-              O
-            </div>
-            <span
-              style={{
-                color: "#fff",
-                fontWeight: 700,
-                fontSize: 15,
-                letterSpacing: "-0.02em",
-              }}
-            >
-              Orbitly
-            </span>
+        {/* MobileMenu inside nav so it anchors below it */}
+        <MobileMenu isOpen={menuOpen} onClose={() => setMenuOpen(false)} />
+
+        {/* Logo */}
+        <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+          <div
+            style={{
+              width: 24,
+              height: 24,
+              borderRadius: 6,
+              background: "#7fff00",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              fontSize: 11,
+              fontWeight: 900,
+              color: "#000",
+            }}
+          >
+            O
           </div>
-          <div style={{ display: "flex", gap: 28 }}>
-            {NAV_LINKS.map((l) => (
-              <a key={l} href="#" className="orbitly-nav-link">
-                {l}
-              </a>
-            ))}
-          </div>
+          <span
+            style={{
+              color: "#fff",
+              fontWeight: 700,
+              fontSize: 15,
+              letterSpacing: "-0.02em",
+            }}
+          >
+            Orbitly
+          </span>
         </div>
+
+        {/* Desktop nav links */}
+        <div className="desktop-nav" style={{ gap: 35 }}>
+          {NAV_LINKS.map((l) => (
+            <a key={l} href="#" className="orbitly-nav-link">
+              {l}
+            </a>
+          ))}
+        </div>
+
+        {/* Desktop CTA */}
         <motion.button
-          className="running-border"
+          className="running-border desktop-cta"
           style={{
             fontSize: 13,
             fontWeight: 600,
@@ -571,9 +739,21 @@ export default function HeroSection() {
         >
           Book a demo
         </motion.button>
+
+        {/* Mobile hamburger */}
+        <motion.button
+          className="mobile-hamburger hamburger-btn"
+          aria-label={menuOpen ? "Close menu" : "Open menu"}
+          aria-expanded={menuOpen}
+          onClick={() => setMenuOpen((v) => !v)}
+          whileTap={{ scale: 0.93 }}
+          style={{ display: "none" }}
+        >
+          <HamburgerIcon isOpen={menuOpen} />
+        </motion.button>
       </motion.nav>
 
-      {/* Hero */}
+      {/* Hero content */}
       <motion.div
         style={{
           position: "relative",
@@ -586,7 +766,6 @@ export default function HeroSection() {
           padding: "32px 24px 0",
         }}
       >
-        {/* Badge */}
         <motion.div style={{ marginBottom: 24 }}>
           <span
             className="running-border"
@@ -605,7 +784,6 @@ export default function HeroSection() {
           </span>
         </motion.div>
 
-        {/* Headline */}
         <motion.h1
           className="orbitly-headline"
           style={{
@@ -620,7 +798,6 @@ export default function HeroSection() {
           <span style={{ color: "#c5ff60" }}>handle everything</span>
         </motion.h1>
 
-        {/* Subheading */}
         <motion.p
           style={{
             fontSize: 15,
@@ -634,7 +811,6 @@ export default function HeroSection() {
           easy-to-use platform.
         </motion.p>
 
-        {/* CTAs */}
         <motion.div
           style={{
             display: "flex",
@@ -688,7 +864,6 @@ export default function HeroSection() {
           </motion.a>
         </motion.div>
 
-        {/* Dashboard card */}
         <motion.div style={{ width: "100%", y: cardY }}>
           <DashboardCard />
         </motion.div>
