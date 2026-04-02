@@ -22,6 +22,7 @@ import Herostar from "./herostar";
 import LoginScreen from "./loginscreen";
 import HeroThunder from "./herothunder";
 import PillNavbarBase from "./pillnavbar";
+import Bluearc from "./bluearc";
 
 const PillNavbar = () => <PillNavbarBase isInsideModal={true} />;
 
@@ -300,5 +301,14 @@ export const REGISTRY: RegistryEntry[] = [
     tag: "hero",
     thumb: "lines",
     component: HeroThunder,
+  },
+  {
+    id: 24,
+    title: "Hero Section",
+    subtitle: "Blue Arc",
+    desc: "A blue gradient arc themed Hero Section",
+    tag: "hero",
+    thumb: "lines",
+    component: Bluearc,
   },
 ];
