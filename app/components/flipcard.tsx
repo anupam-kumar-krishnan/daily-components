@@ -417,7 +417,7 @@ export default function DesignSystemCards() {
 
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500&display=swap');
-        .flip-card-inner { width: 60vw; }
+        .flip-card-inner { width: 75vw; }
         @media (min-width: 640px) { .flip-card-inner { width: 300px; } }
       `}</style>
     </div>
