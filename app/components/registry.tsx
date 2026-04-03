@@ -23,6 +23,7 @@ import LoginScreen from "./loginscreen";
 import HeroThunder from "./herothunder";
 import PillNavbarBase from "./pillnavbar";
 import Bluearc from "./bluearc";
+import HeroPixelHand from "./heropixelhand";
 
 const PillNavbar = () => <PillNavbarBase isInsideModal={true} />;
 
@@ -310,5 +311,14 @@ export const REGISTRY: RegistryEntry[] = [
     tag: "hero",
     thumb: "lines",
     component: Bluearc,
+  },
+  {
+    id: 25,
+    title: "Hero Section",
+    subtitle: "Pixel Hands",
+    desc: "A Dark Hero Section",
+    tag: "hero",
+    thumb: "lines",
+    component: HeroPixelHand,
   },
 ];
